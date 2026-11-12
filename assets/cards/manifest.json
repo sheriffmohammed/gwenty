@@ -1,0 +1,926 @@
+{
+  "cards": {
+    "nr-blue-stripes-commando": {
+      "file": "assets/cards/nr-blue-stripes-commando.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/ee/Tw3_cardart_northernrealms_blue_stripes_1.png/revision/latest?cb=20170426183751",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_blue_stripes_1.png"
+    },
+    "nr-esterad-thyssen": {
+      "file": "assets/cards/nr-esterad-thyssen.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/8b/Tw3_cardart_northernrealms_esterad.png/revision/latest?cb=20170426185826",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_esterad.png"
+    },
+    "nr-ballista": {
+      "file": "assets/cards/nr-ballista.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/70/Tw3_cardart_northernrealms_ballista_1.png/revision/latest?cb=20170426183749",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_ballista_1.png"
+    },
+    "nr-dethmold": {
+      "file": "assets/cards/nr-dethmold.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a5/Tw3_cardart_northernrealms_dethmold.png/revision/latest?cb=20170426191221",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_dethmold.png"
+    },
+    "nr-crinfrid-reavers": {
+      "file": "assets/cards/nr-crinfrid-reavers.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/76/Tw3_cardart_northernrealms_crinfrid_reavers_1.png/revision/latest?cb=20170426191219",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_crinfrid_reavers_1.png"
+    },
+    "nr-catapult": {
+      "file": "assets/cards/nr-catapult.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/5a/Tw3_cardart_northernrealms_catapult_1.png/revision/latest?cb=20170426183753",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_catapult_1.png"
+    },
+    "nr-poor-infantry": {
+      "file": "assets/cards/nr-poor-infantry.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/05/Tw3_cardart_northernrealms_poor_infantry.png/revision/latest?cb=20160923165540",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_poor_infantry.png"
+    },
+    "nr-dun-banner-medic": {
+      "file": "assets/cards/nr-dun-banner-medic.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7a/Tw3_cardart_northernrealms_dun_banner_medic.png/revision/latest?cb=20170426183754",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_dun_banner_medic.png"
+    },
+    "nr-kaedweni-siege-expert": {
+      "file": "assets/cards/nr-kaedweni-siege-expert.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/61/Tw3_cardart_northernrealms_kaedwen_siege_1.png/revision/latest?cb=20170426191223",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_kaedwen_siege_1.png"
+    },
+    "nr-john-natalis": {
+      "file": "assets/cards/nr-john-natalis.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/3b/Tw3_cardart_northernrealms_john_natalis.png/revision/latest?cb=20170426191222",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_john_natalis.png"
+    },
+    "nr-keira-metz": {
+      "file": "assets/cards/nr-keira-metz.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/61/Tw3_cardart_northernrealms_keira_metz.png/revision/latest?cb=20170426191224",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_keira_metz.png"
+    },
+    "nr-philippa-eilhart": {
+      "file": "assets/cards/nr-philippa-eilhart.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/9e/Tw3_cardart_northernrealms_philippa_eilhart.png/revision/latest?cb=20170426191225",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_philippa_eilhart.png"
+    },
+    "nr-prince-stennis": {
+      "file": "assets/cards/nr-prince-stennis.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/f2/Tw3_cardart_northernrealms_prince_stennis.png/revision/latest?cb=20260524181949",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_prince_stennis.png"
+    },
+    "nr-sheldon-skaggs": {
+      "file": "assets/cards/nr-sheldon-skaggs.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c9/Tw3_cardart_northernrealms_sheldon_skaggs.png/revision/latest?cb=20170426202629",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_sheldon_skaggs.png"
+    },
+    "nr-redanian-foot-soldier": {
+      "file": "assets/cards/nr-redanian-foot-soldier.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/65/Tw3_cardart_northernrealms_redanian_foot_soldier_1.png/revision/latest?cb=20170426202628",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_redanian_foot_soldier_1.png"
+    },
+    "nr-sabrina-glevissig": {
+      "file": "assets/cards/nr-sabrina-glevissig.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/69/Tw3_cardart_northernrealms_sabrina.png/revision/latest?cb=20160605172401",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_sabrina.png"
+    },
+    "nr-siege-tower": {
+      "file": "assets/cards/nr-siege-tower.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/33/Tw3_cardart_northernrealms_siege_tower_1.png/revision/latest?cb=20170425204339",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_siege_tower_1.png"
+    },
+    "nr-vernon-roche": {
+      "file": "assets/cards/nr-vernon-roche.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a3/Tw3_cardart_northernrealms_vernon_roche.png/revision/latest?cb=20170426202631",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_vernon_roche.png"
+    },
+    "nr-ves": {
+      "file": "assets/cards/nr-ves.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/04/Tw3_cardart_northernrealms_ves.png/revision/latest?cb=20170426202632",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_ves.png"
+    },
+    "nr-siegfried": {
+      "file": "assets/cards/nr-siegfried.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/1a/Tw3_cardart_northernrealms_siegfried_of_denesle.png/revision/latest?cb=20170426201556",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_siegfried_of_denesle.png"
+    },
+    "nr-sile": {
+      "file": "assets/cards/nr-sile.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/ad/Tw3_cardart_northernrealms_sheala_de_tansarville.png/revision/latest?cb=20170426202629",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_sheala_de_tansarville.png"
+    },
+    "nr-yarpen-zigrin": {
+      "file": "assets/cards/nr-yarpen-zigrin.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/37/Tw3_cardart_northernrealms_yarpen_zigrin.png/revision/latest?cb=20250808095202",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_yarpen_zigrin.png"
+    },
+    "nr-thaler": {
+      "file": "assets/cards/nr-thaler.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/32/Tw3_cardart_northernrealms_thaler.png/revision/latest?cb=20170426202626",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_thaler.png"
+    },
+    "nr-dijkstra": {
+      "file": "assets/cards/nr-dijkstra.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/25/Tw3_cardart_northernrealms_sigismund_dijkstra.png/revision/latest?cb=20170426191226",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_sigismund_dijkstra.png"
+    },
+    "nr-trebuchet": {
+      "file": "assets/cards/nr-trebuchet.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/78/Tw3_cardart_northernrealms_trebuchet_1.png/revision/latest?cb=20170426202630",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_trebuchet_1.png"
+    },
+    "ng-black-infantry-archer": {
+      "file": "assets/cards/ng-black-infantry-archer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/dd/Tw3_cardart_nilfgaard_black_infantry_archer_1.png/revision/latest?cb=20170422163121",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_black_infantry_archer_1.png"
+    },
+    "ng-assire": {
+      "file": "assets/cards/ng-assire.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/dc/Tw3_cardart_nilfgaard_assire_var_anahid.png/revision/latest?cb=20260524181319",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_assire_var_anahid.png"
+    },
+    "ng-albrich": {
+      "file": "assets/cards/ng-albrich.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/93/Tw3_cardart_nilfgaard_albrich.png/revision/latest?cb=20260524181048",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_albrich.png"
+    },
+    "ng-cynthia": {
+      "file": "assets/cards/ng-cynthia.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/42/Tw3_cardart_nilfgaard_cynthia.png/revision/latest?cb=20170425174236",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_cynthia.png"
+    },
+    "ng-etolian-archers": {
+      "file": "assets/cards/ng-etolian-archers.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7a/Tw3_cardart_nilfgaard_etolian_auxiliary_archers1.png/revision/latest?cb=20170425182658",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_etolian_auxiliary_archers1.png"
+    },
+    "ng-cahir": {
+      "file": "assets/cards/ng-cahir.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/d1/Tw3_cardart_nilfgaard_cahir.png/revision/latest?cb=20170425055516",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_cahir.png"
+    },
+    "ng-fringilla": {
+      "file": "assets/cards/ng-fringilla.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/01/Tw3_cardart_nilfgaard_fringilla_vigo.png/revision/latest?cb=20170425182659",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_fringilla_vigo.png"
+    },
+    "ng-fire-scorpion": {
+      "file": "assets/cards/ng-fire-scorpion.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/70/Tw3_cardart_nilfgaard_heavy_zerrikanian_fire_scorpion.png/revision/latest?cb=20170420165620",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_heavy_zerrikanian_fire_scorpion.png"
+    },
+    "ng-menno": {
+      "file": "assets/cards/ng-menno.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/8c/Tw3_cardart_nilfgaard_menno_coehoorn.png/revision/latest?cb=20260524183352",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_menno_coehoorn.png"
+    },
+    "ng-morteisen": {
+      "file": "assets/cards/ng-morteisen.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e6/Tw3_cardart_nilfgaard_morteisen.png/revision/latest?cb=20170425061228",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_morteisen.png"
+    },
+    "ng-impera-brigade": {
+      "file": "assets/cards/ng-impera-brigade.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/85/Tw3_cardart_nilgaard_impera_brigade.png/revision/latest?cb=20260305083820",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilgaard_impera_brigade.png"
+    },
+    "ng-letho": {
+      "file": "assets/cards/ng-letho.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/94/Tw3_cardart_nilfgaard_letho.png/revision/latest?cb=20241215194328",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_letho.png"
+    },
+    "ng-nausicaa-cavalry": {
+      "file": "assets/cards/ng-nausicaa-cavalry.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/33/Tw3_cardart_nilfgaard_nausicaa_cavalry_rider1.png/revision/latest?cb=20170425182701",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_nausicaa_cavalry_rider1.png"
+    },
+    "ng-morvran": {
+      "file": "assets/cards/ng-morvran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/34/Tw3_cardart_nilfgaard_morvran_voorhis.png/revision/latest?cb=20260524180145",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_morvran_voorhis.png"
+    },
+    "ng-puttkammer": {
+      "file": "assets/cards/ng-puttkammer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/ef/Tw3_cardart_nilfgaard_Puttkammer.png/revision/latest?cb=20170425062029",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_Puttkammer.png"
+    },
+    "ng-rainfarn": {
+      "file": "assets/cards/ng-rainfarn.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/2f/Tw3_cardart_nilfgaard_rainfarn.png/revision/latest?cb=20260524175954",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_rainfarn.png"
+    },
+    "ng-renuald": {
+      "file": "assets/cards/ng-renuald.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/52/Tw3_cardart_nilfgaard_renuald.png/revision/latest?cb=20170425190053",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_renuald.png"
+    },
+    "ng-rotten-mangonel": {
+      "file": "assets/cards/ng-rotten-mangonel.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/59/Tw3_cardart_nilfgaard_rotten_mangonel.png/revision/latest?cb=20170425190054",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_rotten_mangonel.png"
+    },
+    "ng-shilard": {
+      "file": "assets/cards/ng-shilard.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/49/Tw3_cardart_nilgaard_shilard.png/revision/latest?cb=20260524182347",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilgaard_shilard.png"
+    },
+    "ng-siege-technician": {
+      "file": "assets/cards/ng-siege-technician.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/87/Tw3_cardart_nilfgaard_siege_technician.png/revision/latest?cb=20170425190055",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_siege_technician.png"
+    },
+    "ng-siege-engineer": {
+      "file": "assets/cards/ng-siege-engineer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/96/Tw3_cardart_nilfgaard_siege_engineer.png/revision/latest?cb=20170425190054",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_siege_engineer.png"
+    },
+    "ng-stefan-skellen": {
+      "file": "assets/cards/ng-stefan-skellen.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a4/Tw3_cardart_nilfgaard_stefan_skellen.png/revision/latest?cb=20260524180633",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_stefan_skellen.png"
+    },
+    "ng-sweers": {
+      "file": "assets/cards/ng-sweers.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/6a/Tw3_cardart_nilfgaard_sweers.png/revision/latest?cb=20260524181537",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_sweers.png"
+    },
+    "ng-vreemde": {
+      "file": "assets/cards/ng-vreemde.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/9f/Tw3_cardart_nilfgaard_vreemde.png/revision/latest?cb=20260524182228",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_vreemde.png"
+    },
+    "ng-vanhemar": {
+      "file": "assets/cards/ng-vanhemar.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7c/Tw3_cardart_nilfgaard_vanhemar.png/revision/latest?cb=20260524181431",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_vanhemar.png"
+    },
+    "ng-tibor": {
+      "file": "assets/cards/ng-tibor.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e5/Tw3_cardart_nilfgaard_tibor_rggebracht.png/revision/latest?cb=20260524180918",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_tibor_rggebracht.png"
+    },
+    "ng-young-emissary": {
+      "file": "assets/cards/ng-young-emissary.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7c/Tw3_cardart_nilfgaard_young_emissary1.png/revision/latest?cb=20260524182916",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_young_emissary1.png"
+    },
+    "st-barclay-els": {
+      "file": "assets/cards/st-barclay-els.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/f4/Tw3_cardart_scoiatael_barclay.png/revision/latest?cb=20161008170215",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_barclay.png"
+    },
+    "ng-vattier": {
+      "file": "assets/cards/ng-vattier.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/12/Tw3_cardart_nilfgaard_vattier_de_rideaux.png/revision/latest?cb=20260524180500",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_vattier_de_rideaux.png"
+    },
+    "st-ciaran": {
+      "file": "assets/cards/st-ciaran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/db/Tw3_cardart_scoiatael_ciaran.png/revision/latest?cb=20260524181718",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_ciaran.png"
+    },
+    "st-dennis-cranmer": {
+      "file": "assets/cards/st-dennis-cranmer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/dd/Tw3_cardart_scoiatael_dennis_cranmer.png/revision/latest?cb=20170427052652",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_dennis_cranmer.png"
+    },
+    "st-dol-blathanna-archer": {
+      "file": "assets/cards/st-dol-blathanna-archer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/8b/Tw3_cardart_scoiatael_dol_blathanna_archer.png/revision/latest?cb=20170427053842",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_dol_blathanna_archer.png"
+    },
+    "st-dol-blathanna-scout": {
+      "file": "assets/cards/st-dol-blathanna-scout.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/d5/Tw3_cardart_scoiatael_dol_blathanna_scout_1.png/revision/latest?cb=20170427053844",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_dol_blathanna_scout_1.png"
+    },
+    "st-dwarven-skirmisher": {
+      "file": "assets/cards/st-dwarven-skirmisher.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/aa/Tw3_cardart_scoiatael_dwarven_skirmisher_1.png/revision/latest?cb=20170427053847",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_dwarven_skirmisher_1.png"
+    },
+    "st-eithne": {
+      "file": "assets/cards/st-eithne.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/65/Tw3_cardart_scoiatael_eithne.png/revision/latest?cb=20161015113751",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_eithne.png"
+    },
+    "st-filavandrel": {
+      "file": "assets/cards/st-filavandrel.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/3e/Tw3_cardart_scoiatael_filavandrel.png/revision/latest?cb=20170427054437",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_filavandrel.png"
+    },
+    "st-elven-skirmisher": {
+      "file": "assets/cards/st-elven-skirmisher.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/32/Tw3_cardart_scoiatael_elven_skirmisher_1.png/revision/latest?cb=20170427053849",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_elven_skirmisher_1.png"
+    },
+    "st-havekar-healer": {
+      "file": "assets/cards/st-havekar-healer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/ec/Tw3_cardart_scoiatael_havekar_healer_1.png/revision/latest?cb=20170427063644",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_havekar_healer_1.png"
+    },
+    "st-ida-emean": {
+      "file": "assets/cards/st-ida-emean.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/00/Tw3_cardart_scoiatael_ida.png/revision/latest?cb=20260305084817",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_ida.png"
+    },
+    "st-mahakaman-defender": {
+      "file": "assets/cards/st-mahakaman-defender.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/78/Tw3_cardart_scoiatael_mahakaman_defender_1.png/revision/latest?cb=20170427063940",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_mahakaman_defender_1.png"
+    },
+    "st-isengrim": {
+      "file": "assets/cards/st-isengrim.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a6/Tw3_cardart_scoiatael_isengrim.png/revision/latest?cb=20260305084942",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_isengrim.png"
+    },
+    "st-havekar-smuggler": {
+      "file": "assets/cards/st-havekar-smuggler.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b2/Tw3_cardart_scoiatael_havekar_smuggler_1.png/revision/latest?cb=20170427063646",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_havekar_smuggler_1.png"
+    },
+    "st-saesenthessis": {
+      "file": "assets/cards/st-saesenthessis.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a6/Tw3_cardart_scoiatael_saesenthessis_saskia.png/revision/latest?cb=20170427060503",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_saesenthessis_saskia.png"
+    },
+    "st-riordain": {
+      "file": "assets/cards/st-riordain.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/27/Tw3_cardart_scoiatael_riordain.png/revision/latest?cb=20170427055907",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_riordain.png"
+    },
+    "st-schirru": {
+      "file": "assets/cards/st-schirru.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/de/Tw3_cardart_scoiatael_schirru.png/revision/latest?cb=20160611123741",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_schirru.png"
+    },
+    "st-iorveth": {
+      "file": "assets/cards/st-iorveth.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e9/Tw3_cardart_scoiatael_iorveth.png/revision/latest?cb=20260305085041",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_iorveth.png"
+    },
+    "st-toruviel": {
+      "file": "assets/cards/st-toruviel.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/12/Tw3_cardart_scoiatael_toruviel.png/revision/latest?cb=20260305085226",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_toruviel.png"
+    },
+    "st-vrihedd-recruit": {
+      "file": "assets/cards/st-vrihedd-recruit.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b3/Tw3_cardart_scoiatael_vrihedd_brigade_recruit.png/revision/latest?cb=20170427063643",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_vrihedd_brigade_recruit.png"
+    },
+    "st-yaevinn": {
+      "file": "assets/cards/st-yaevinn.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c7/Tw3_cardart_scoiatael_yaevinn.png/revision/latest?cb=20260305085507",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_yaevinn.png"
+    },
+    "mo-arachas": {
+      "file": "assets/cards/mo-arachas.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/40/Tw3_cardart_monsters_arachas1.png/revision/latest?cb=20170425202402",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_arachas1.png"
+    },
+    "st-vrihedd-veteran": {
+      "file": "assets/cards/st-vrihedd-veteran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/be/Tw3_cardart_scoiatael_vrihedd_brigade_veteran_1.png/revision/latest?cb=20170427063644",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_vrihedd_brigade_veteran_1.png"
+    },
+    "mo-arachas-behemoth": {
+      "file": "assets/cards/mo-arachas-behemoth.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/81/Tw3_cardart_monsters_arachas_behemoth.png/revision/latest?cb=20170425202401",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_arachas_behemoth.png"
+    },
+    "st-milva": {
+      "file": "assets/cards/st-milva.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/2d/Tw3_cardart_scoiatael_milva.png/revision/latest?cb=20260305084437",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_milva.png"
+    },
+    "mo-cockatrice": {
+      "file": "assets/cards/mo-cockatrice.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/bf/Tw3_cardart_monsters_cockatrice.png/revision/latest?cb=20170425202404",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_cockatrice.png"
+    },
+    "mo-celaeno-harpy": {
+      "file": "assets/cards/mo-celaeno-harpy.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/15/Tw3_cardart_monsters_celaeno_harpy.png/revision/latest?cb=20170425202403",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_celaeno_harpy.png"
+    },
+    "mo-botchling": {
+      "file": "assets/cards/mo-botchling.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/06/Tw3_cardart_monsters_botchling.png/revision/latest?cb=20260304173006",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_botchling.png"
+    },
+    "mo-brewess": {
+      "file": "assets/cards/mo-brewess.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/5e/Tw3_cardart_monsters_crone_brewess.png/revision/latest?cb=20170425201323",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_crone_brewess.png"
+    },
+    "mo-weavess": {
+      "file": "assets/cards/mo-weavess.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/80/Tw3_cardart_monsters_crone_weavess.png/revision/latest?cb=20170425201324",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_crone_weavess.png"
+    },
+    "mo-whispess": {
+      "file": "assets/cards/mo-whispess.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7b/Tw3_cardart_monsters_crone_whispess.png/revision/latest?cb=20170425201325",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_crone_whispess.png"
+    },
+    "mo-draug": {
+      "file": "assets/cards/mo-draug.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c8/Tw3_cardart_monsters_draug.png/revision/latest?cb=20170425202405",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_draug.png"
+    },
+    "mo-endrega": {
+      "file": "assets/cards/mo-endrega.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/9a/Tw3_cardart_monsters_endrega.png/revision/latest?cb=20170425202406",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_endrega.png"
+    },
+    "mo-fire-elemental": {
+      "file": "assets/cards/mo-fire-elemental.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/29/Tw3_cardart_monsters_fire_elemental.png/revision/latest?cb=20170425202406",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_fire_elemental.png"
+    },
+    "mo-fiend": {
+      "file": "assets/cards/mo-fiend.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/0e/Tw3_cardart_monsters_fiend.png/revision/latest?cb=20170425174233",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_fiend.png"
+    },
+    "mo-forktail": {
+      "file": "assets/cards/mo-forktail.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/8f/Tw3_cardart_monsters_forktail.png/revision/latest?cb=20170425202632",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_forktail.png"
+    },
+    "mo-frightener": {
+      "file": "assets/cards/mo-frightener.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/de/Tw3_cardart_monsters_frightener.png/revision/latest?cb=20170425202632",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_frightener.png"
+    },
+    "mo-earth-elemental": {
+      "file": "assets/cards/mo-earth-elemental.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/ad/Tw3_cardart_monsters_earth_elemental.png/revision/latest?cb=20170425202405",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_earth_elemental.png"
+    },
+    "mo-ghoul": {
+      "file": "assets/cards/mo-ghoul.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/4f/Tw3_cardart_monsters_ghoul1.png/revision/latest?cb=20170425202633",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_ghoul1.png"
+    },
+    "mo-grave-hag": {
+      "file": "assets/cards/mo-grave-hag.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/ca/Tw3_cardart_monsters_grave_hag.png/revision/latest?cb=20170425202634",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_grave_hag.png"
+    },
+    "mo-griffin": {
+      "file": "assets/cards/mo-griffin.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/46/Tw3_cardart_monsters_griffin.png/revision/latest?cb=20170425202635",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_griffin.png"
+    },
+    "mo-gargoyle": {
+      "file": "assets/cards/mo-gargoyle.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/92/Tw3_cardart_monsters_gargoyle.png/revision/latest?cb=20170425202633",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_gargoyle.png"
+    },
+    "mo-foglet": {
+      "file": "assets/cards/mo-foglet.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/52/Tw3_cardart_monsters_foglet.png/revision/latest?cb=20170425202631",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_foglet.png"
+    },
+    "mo-leshen": {
+      "file": "assets/cards/mo-leshen.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/35/Tw3_cardart_monsters_leshen.png/revision/latest?cb=20170425202849",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_leshen.png"
+    },
+    "mo-harpy": {
+      "file": "assets/cards/mo-harpy.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c9/Tw3_cardart_monsters_harpy.png/revision/latest?cb=20260304172524",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_harpy.png"
+    },
+    "mo-imlerith": {
+      "file": "assets/cards/mo-imlerith.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b5/Tw3_cardart_monsters_imlerith.png/revision/latest?cb=20170425202848",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_imlerith.png"
+    },
+    "mo-ice-giant": {
+      "file": "assets/cards/mo-ice-giant.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/bb/Tw3_cardart_monsters_ice_giant.png/revision/latest?cb=20260304172708",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_ice_giant.png"
+    },
+    "mo-plague-maiden": {
+      "file": "assets/cards/mo-plague-maiden.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/f4/Tw3_cardart_monsters_plague_maiden.png/revision/latest?cb=20170425202852",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_plague_maiden.png"
+    },
+    "mo-nekker": {
+      "file": "assets/cards/mo-nekker.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b2/Tw3_cardart_monsters_nekker1.png/revision/latest?cb=20170425202850",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_nekker1.png"
+    },
+    "mo-kayran": {
+      "file": "assets/cards/mo-kayran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7f/Tw3_cardart_monsters_kayran.png/revision/latest?cb=20170425202849",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_kayran.png"
+    },
+    "mo-bruxa": {
+      "file": "assets/cards/mo-bruxa.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/80/Tw3_cardart_monsters_vampire_bruxa.png/revision/latest?cb=20170425202853",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_vampire_bruxa.png"
+    },
+    "mo-toad": {
+      "file": "assets/cards/mo-toad.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/38/Tw3_cardart_monsters_toad.png/revision/latest?cb=20260304173231",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_toad.png"
+    },
+    "mo-ekimmara": {
+      "file": "assets/cards/mo-ekimmara.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a7/Tw3_cardart_monsters_vampire_ekimmara.png/revision/latest?cb=20170425203058",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_vampire_ekimmara.png"
+    },
+    "mo-fleder": {
+      "file": "assets/cards/mo-fleder.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/7d/Tw3_cardart_monsters_vampire_fleder.png/revision/latest?cb=20170425203059",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_vampire_fleder.png"
+    },
+    "mo-garkain": {
+      "file": "assets/cards/mo-garkain.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/30/Tw3_cardart_monsters_vampire_garkain.png/revision/latest?cb=20170425203059",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_vampire_garkain.png"
+    },
+    "mo-katakan": {
+      "file": "assets/cards/mo-katakan.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/20/Tw3_cardart_monsters_vampire_katakan.png/revision/latest?cb=20170425203100",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_vampire_katakan.png"
+    },
+    "mo-werewolf": {
+      "file": "assets/cards/mo-werewolf.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/46/Tw3_cardart_monsters_werewolf.png/revision/latest?cb=20170425203100",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_werewolf.png"
+    },
+    "mo-wyvern": {
+      "file": "assets/cards/mo-wyvern.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/79/Tw3_cardart_monsters_wyvern.png/revision/latest?cb=20170425203101",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_wyvern.png"
+    },
+    "sk-young-berserker": {
+      "file": "assets/cards/sk-young-berserker.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/56/Tw3_cardart_skellige_young_berserker.png/revision/latest?cb=20160530181729",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_young_berserker.png"
+    },
+    "sk-berserker": {
+      "file": "assets/cards/sk-berserker.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/86/Tw3_cardart_skellige_berserker.png/revision/latest?cb=20250102150529",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_berserker.png"
+    },
+    "sk-young-vildkaarl": {
+      "file": "assets/cards/sk-young-vildkaarl.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/bc/Tw3_cardart_skellige_young_berserker_bear.png/revision/latest?cb=20160530181812",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_young_berserker_bear.png"
+    },
+    "sk-vildkaarl": {
+      "file": "assets/cards/sk-vildkaarl.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/cc/Tw3_cardart_skellige_berserker_bear.png/revision/latest?cb=20160530180053",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_berserker_bear.png"
+    },
+    "sk-hemdall": {
+      "file": "assets/cards/sk-hemdall.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c5/Tw3_cardart_skellige_hemdal.png/revision/latest?cb=20160530175331",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_hemdal.png"
+    },
+    "sk-birna-bran": {
+      "file": "assets/cards/sk-birna-bran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/3f/Tw3_cardart_skellige_birna_bran.png/revision/latest?cb=20160530180114",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_birna_bran.png"
+    },
+    "sk-cerys": {
+      "file": "assets/cards/sk-cerys.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b6/Tw3_cardart_skellige_cerys.png/revision/latest?cb=20160530180257",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_cerys.png"
+    },
+    "sk-blueboy-lugos": {
+      "file": "assets/cards/sk-blueboy-lugos.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b9/Tw3_cardart_skellige_blueboy_lugos.png/revision/latest?cb=20160530180217",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_blueboy_lugos.png"
+    },
+    "sk-brokvar-archer": {
+      "file": "assets/cards/sk-brokvar-archer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b6/Tw3_cardart_skellige_clan_brokvar_archer.png/revision/latest?cb=20160530180329",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_brokvar_archer.png"
+    },
+    "sk-dimun-pirate": {
+      "file": "assets/cards/sk-dimun-pirate.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/67/Tw3_cardart_skellige_clan_dimun_pirate.png/revision/latest?cb=20160530180353",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_dimun_pirate.png"
+    },
+    "sk-shield-maiden": {
+      "file": "assets/cards/sk-shield-maiden.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/24/Tw3_cardart_skellige_clan_drummond_shieldmaiden.png/revision/latest?cb=20160530180420",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_drummond_shieldmaiden.png"
+    },
+    "sk-heymaey-skald": {
+      "file": "assets/cards/sk-heymaey-skald.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e8/Tw3_cardart_skellige_clan_heymaey_skald.png/revision/latest?cb=20160530180521",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_heymaey_skald.png"
+    },
+    "sk-an-craite-warrior": {
+      "file": "assets/cards/sk-an-craite-warrior.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/45/Tw3_cardart_skellige_clan_an_craite_warrior.png/revision/latest?cb=20160530173515",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_an_craite_warrior.png"
+    },
+    "sk-donar-an-hindar": {
+      "file": "assets/cards/sk-donar-an-hindar.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/16/Tw3_cardart_skellige_donar_an_hindar.png/revision/latest?cb=20160530180649",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_donar_an_hindar.png"
+    },
+    "sk-tordarroch-armorsmith": {
+      "file": "assets/cards/sk-tordarroch-armorsmith.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/85/Tw3_cardart_skellige_clan_tordarroch_armorsmith.png/revision/latest?cb=20160530180620",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_clan_tordarroch_armorsmith.png"
+    },
+    "sk-draig-bon-dhu": {
+      "file": "assets/cards/sk-draig-bon-dhu.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/26/Tw3_cardart_skellige_draig.png/revision/latest?cb=20160530180711",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_draig.png"
+    },
+    "sk-ermion": {
+      "file": "assets/cards/sk-ermion.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e1/Tw3_cardart_skellige_ermion.png/revision/latest?cb=20191101120547",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_ermion.png"
+    },
+    "sk-hjalmar": {
+      "file": "assets/cards/sk-hjalmar.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/35/Tw3_cardart_skellige_hjalmar.png/revision/latest?cb=20160530180813",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_hjalmar.png"
+    },
+    "sk-holger-blackhand": {
+      "file": "assets/cards/sk-holger-blackhand.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/08/Tw3_cardart_skellige_holger_blackhand.png/revision/latest?cb=20160530180835",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_holger_blackhand.png"
+    },
+    "sk-kambi": {
+      "file": "assets/cards/sk-kambi.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/6/6c/Tw3_cardart_skellige_cock.png/revision/latest?cb=20160530175822",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_cock.png"
+    },
+    "sk-light-longship": {
+      "file": "assets/cards/sk-light-longship.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/78/Tw3_cardart_skellige_light_drakkar.png/revision/latest?cb=20160530181056",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_light_drakkar.png"
+    },
+    "sk-madman-lugos": {
+      "file": "assets/cards/sk-madman-lugos.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e0/Tw3_cardart_skellige_madman_lugos.png/revision/latest?cb=20160530181127",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_madman_lugos.png"
+    },
+    "sk-olaf": {
+      "file": "assets/cards/sk-olaf.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/20/Tw3_cardart_skellige_olaf.png/revision/latest?cb=20160530181205",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_olaf.png"
+    },
+    "sk-svanrige": {
+      "file": "assets/cards/sk-svanrige.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/00/Tw3_cardart_skellige_svanrige.png/revision/latest?cb=20160530181355",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_svanrige.png"
+    },
+    "sk-udalryk": {
+      "file": "assets/cards/sk-udalryk.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/ce/Tw3_cardart_skellige_udalryk.png/revision/latest?cb=20160530181508",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_udalryk.png"
+    },
+    "sk-war-longship": {
+      "file": "assets/cards/sk-war-longship.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/49/Tw3_cardart_skellige_war_drakkar.png/revision/latest?cb=20160530181617",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_war_drakkar.png"
+    },
+    "nt-vesemir": {
+      "file": "assets/cards/nt-vesemir.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/8/82/Tw3_cardart_neutral_vesemir.png/revision/latest?cb=20170425053147",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_vesemir.png"
+    },
+    "nt-geralt": {
+      "file": "assets/cards/nt-geralt.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/ee/Tw3_cardart_neutral_geralt.png/revision/latest?cb=20170425051447",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_geralt.png"
+    },
+    "nt-ciri": {
+      "file": "assets/cards/nt-ciri.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/3f/Tw3_cardart_neutral_ciri.png/revision/latest?cb=20170425042705",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_ciri.png"
+    },
+    "nt-triss": {
+      "file": "assets/cards/nt-triss.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/95/Tw3_cardart_neutral_triss.png/revision/latest?cb=20170425052941",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_triss.png"
+    },
+    "nt-yennefer": {
+      "file": "assets/cards/nt-yennefer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/3/3e/Tw3_cardart_neutral_yennefer.png/revision/latest?cb=20170425174235",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_yennefer.png"
+    },
+    "nt-regis": {
+      "file": "assets/cards/nt-regis.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e6/Tw3_cardart_neutral_emiel.png/revision/latest?cb=20160414175853",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_emiel.png"
+    },
+    "nt-roach": {
+      "file": "assets/cards/nt-roach.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/4/40/Gwent_cardart_neutral_roach.jpg/revision/latest?cb=20181022230657",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Gwent_cardart_neutral_roach.jpg"
+    },
+    "nt-zoltan": {
+      "file": "assets/cards/nt-zoltan.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/5f/Tw3_cardart_neutral_zoltan.png/revision/latest?cb=20170425174235",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_zoltan.png"
+    },
+    "nt-olgierd": {
+      "file": "assets/cards/nt-olgierd.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/14/Tw3_cardart_neutral_olgierd_von_everec.png/revision/latest?cb=20170425174234",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_olgierd_von_everec.png"
+    },
+    "nt-dandelion": {
+      "file": "assets/cards/nt-dandelion.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/1b/Tw3_cardart_neutral_dandelion.png/revision/latest?cb=20260305083521",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_dandelion.png"
+    },
+    "nt-gaunter": {
+      "file": "assets/cards/nt-gaunter.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/f6/Tw3_cardart_neutral_gaunter_odimm.png/revision/latest?cb=20170425174234",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_gaunter_odimm.png"
+    },
+    "nt-gaunter-darkness": {
+      "file": "assets/cards/nt-gaunter-darkness.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/54/Tw3_cardart_neutral_gaunter_odimm_darkness.png/revision/latest?cb=20170115083621",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_gaunter_odimm_darkness.png"
+    },
+    "nt-cow": {
+      "file": "assets/cards/nt-cow.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/58/Tw3_cardart_neutral_cow.png/revision/latest?cb=20170425201326",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_cow.png"
+    },
+    "nt-bovine": {
+      "file": "assets/cards/nt-bovine.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/58/Tw3_cardart_neutral_cow.png/revision/latest?cb=20170425201326",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_cow.png"
+    },
+    "nt-villentretenmerth": {
+      "file": "assets/cards/nt-villentretenmerth.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/dd/Tw3_cardart_neutral_villen.png/revision/latest?cb=20160904162240",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_villen.png"
+    },
+    "nt-mysterious-elf": {
+      "file": "assets/cards/nt-mysterious-elf.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/26/Tw3_cardart_neutral_avallach.png/revision/latest?cb=20160507170613",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_avallach.png"
+    },
+    "nt-decoy": {
+      "file": "assets/cards/nt-decoy.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/77/Tw3_cardart_neutral_decoy.png/revision/latest?cb=20170425193145",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_decoy.png"
+    },
+    "nt-mardroeme": {
+      "file": "assets/cards/nt-mardroeme.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a3/Tw3_cardart_skellige_special_mushroom.png/revision/latest?cb=20160530175251",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_special_mushroom.png"
+    },
+    "nt-scorch": {
+      "file": "assets/cards/nt-scorch.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/29/Tw3_cardart_neutral_scorch.png/revision/latest?cb=20170425193143",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_scorch.png"
+    },
+    "nt-horn": {
+      "file": "assets/cards/nt-horn.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/aa/Tw3_cardart_neutral_commander_horn.png/revision/latest?cb=20170425193146",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_commander_horn.png"
+    },
+    "nt-frost": {
+      "file": "assets/cards/nt-frost.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/e8/Tw3_cardart_neutral_frost.png/revision/latest?cb=20170425193144",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_frost.png"
+    },
+    "nt-fog": {
+      "file": "assets/cards/nt-fog.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/74/Tw3_cardart_neutral_fog.png/revision/latest?cb=20170425193145",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_fog.png"
+    },
+    "nt-rain": {
+      "file": "assets/cards/nt-rain.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/ef/Tw3_cardart_neutral_rain.png/revision/latest?cb=20170425193144",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_rain.png"
+    },
+    "nt-storm": {
+      "file": "assets/cards/nt-storm.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/2a/Tw3_cardart_skellige_special_skellige_storm.png/revision/latest?cb=20160530181326",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_special_skellige_storm.png"
+    },
+    "nt-clear": {
+      "file": "assets/cards/nt-clear.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c1/Tw3_cardart_neutral_clear_sky.png/revision/latest?cb=20170425193146",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_neutral_clear_sky.png"
+    }
+  },
+  "leaders": {
+    "nr-foltest-temerian": {
+      "file": "assets/leaders/nr-foltest-temerian.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a5/Tw3_cardart_northernrealms_foltest_bronze.png/revision/latest?cb=20170426195031",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_foltest_bronze.png"
+    },
+    "nr-foltest-lord": {
+      "file": "assets/leaders/nr-foltest-lord.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/11/Tw3_cardart_northernrealms_foltest_copper.png/revision/latest?cb=20170426195031",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_foltest_copper.png"
+    },
+    "nr-foltest-medell": {
+      "file": "assets/leaders/nr-foltest-medell.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/07/Tw3_cardart_northernrealms_foltest_gold.png/revision/latest?cb=20170426195032",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_foltest_gold.png"
+    },
+    "nr-foltest-steelforged": {
+      "file": "assets/leaders/nr-foltest-steelforged.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/d/d3/Tw3_cardart_northernrealms_foltest_platinium.png/revision/latest?cb=20170426195033",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_foltest_platinium.png"
+    },
+    "nr-foltest-siegemaster": {
+      "file": "assets/leaders/nr-foltest-siegemaster.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/fe/Tw3_cardart_northernrealms_foltest_silver.png/revision/latest?cb=20170426195033",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_northernrealms_foltest_silver.png"
+    },
+    "ng-emhyr-emperor": {
+      "file": "assets/leaders/ng-emhyr-emperor.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/ac/Tw3_cardart_nilfgaard_emhyr_bronze.png/revision/latest?cb=20170425174237",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_emhyr_bronze.png"
+    },
+    "ng-emhyr-majesty": {
+      "file": "assets/leaders/ng-emhyr-majesty.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c2/Tw3_cardart_nilfgaard_emhyr_copper.png/revision/latest?cb=20170425174237",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_emhyr_copper.png"
+    },
+    "ng-emhyr-invader": {
+      "file": "assets/leaders/ng-emhyr-invader.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/e/eb/Tw3_cardart_nilfgaard_emhyr_gold.png/revision/latest?cb=20170425182657",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_emhyr_gold.png"
+    },
+    "ng-emhyr-relentless": {
+      "file": "assets/leaders/ng-emhyr-relentless.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/5/52/Tw3_cardart_nilfgaard_emhyr_silver.png/revision/latest?cb=20170425182658",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_emhyr_silver.png"
+    },
+    "st-francesca-daisy": {
+      "file": "assets/leaders/st-francesca-daisy.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/ff/Tw3_cardart_scoiatael_francesca_bronze.png/revision/latest?cb=20160106191215",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_francesca_bronze.png"
+    },
+    "st-francesca-hope": {
+      "file": "assets/leaders/st-francesca-hope.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/a/a1/Tw3_cardart_scoiatael_francesca_copper.png/revision/latest?cb=20170427051514",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_francesca_copper.png"
+    },
+    "ng-emhyr-whiteflame": {
+      "file": "assets/leaders/ng-emhyr-whiteflame.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/2/25/Tw3_cardart_nilfgaard_emhyr_platinium.png/revision/latest?cb=20170425182657",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_nilfgaard_emhyr_platinium.png"
+    },
+    "st-francesca-queen": {
+      "file": "assets/leaders/st-francesca-queen.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/0/0d/Tw3_cardart_scoiatael_francesca_silver.png/revision/latest?cb=20170427051515",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_francesca_silver.png"
+    },
+    "st-francesca-pureblood": {
+      "file": "assets/leaders/st-francesca-pureblood.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/9b/Tw3_cardart_scoiatael_francesca_gold.png/revision/latest?cb=20160409070652",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_francesca_gold.png"
+    },
+    "st-francesca-beautiful": {
+      "file": "assets/leaders/st-francesca-beautiful.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/bb/Tw3_cardart_scoiatael_francesca_platinium.png/revision/latest?cb=20170427051515",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_scoiatael_francesca_platinium.png"
+    },
+    "mo-eredin-bringer": {
+      "file": "assets/leaders/mo-eredin-bringer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/1/17/Tw3_cardart_monsters_eredin_copper.png/revision/latest?cb=20170425201321",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_eredin_copper.png"
+    },
+    "mo-eredin-destroyer": {
+      "file": "assets/leaders/mo-eredin-destroyer.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/c/c7/Tw3_cardart_monsters_eredin_silver.png/revision/latest?cb=20260305082953",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_eredin_silver.png"
+    },
+    "mo-eredin-redriders": {
+      "file": "assets/leaders/mo-eredin-redriders.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/b/b3/Tw3_cardart_monsters_eredin_gold.png/revision/latest?cb=20170425201321",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_eredin_gold.png"
+    },
+    "mo-eredin-treacherous": {
+      "file": "assets/leaders/mo-eredin-treacherous.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/fa/Tw3_cardart_monsters_eredin_bronze.png/revision/latest?cb=20170425201320",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_eredin_bronze.png"
+    },
+    "mo-eredin-wildhunt": {
+      "file": "assets/leaders/mo-eredin-wildhunt.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/9/94/Tw3_cardart_monsters_eredin_platinium.png/revision/latest?cb=20170425201322",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_monsters_eredin_platinium.png"
+    },
+    "sk-crach": {
+      "file": "assets/leaders/sk-crach.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/7/72/Tw3_cardart_skellige_leader_crach.png/revision/latest?cb=20160530180949",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_leader_crach.png"
+    },
+    "sk-bran": {
+      "file": "assets/leaders/sk-bran.webp",
+      "source": "https://static.wikia.nocookie.net/witcher/images/f/fb/Tw3_cardart_skellige_leader_king_bran.png/revision/latest?cb=20160530181030",
+      "sourcePage": "https://witcher.fandom.com/wiki/File:Tw3_cardart_skellige_leader_king_bran.png"
+    }
+  }
+}

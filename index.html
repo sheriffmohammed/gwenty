@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A faithful, playable recreation of Gwent from The Witcher 3 — five factions, full card abilities, and a cunning AI opponent." />
+  <title>Gwent — A Witcher's Card Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/table.css" />
+  <link rel="stylesheet" href="styles/cards.css" />
+  <link rel="stylesheet" href="styles/screens.css" />
+  <link rel="stylesheet" href="styles/overlays.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="atmosphere" aria-hidden="true">
+      <div class="atmosphere__grain"></div>
+      <div class="atmosphere__vignette"></div>
+      <div class="atmosphere__motes"></div>
+    </div>
+
+    <!-- ============================== TITLE ============================== -->
+    <section id="screen-title" class="screen screen--title">
+      <div class="map-lines" aria-hidden="true">
+        <svg viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice">
+          <g fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M-50 660 C 140 560, 220 690, 380 600 S 650 470, 960 580" opacity=".55"/>
+            <path d="M-50 700 C 140 600, 230 730, 400 640 S 670 510, 960 620" opacity=".35"/>
+            <path d="M120 940 C 180 760, 320 710, 330 540 S 260 250, 420 60" opacity=".45"/>
+            <path d="M160 940 C 230 760, 360 700, 370 540 S 300 260, 460 70" opacity=".25"/>
+            <circle cx="690" cy="250" r="150" opacity=".35"/>
+            <circle cx="690" cy="250" r="110" opacity=".22"/>
+            <circle cx="690" cy="250" r="70" opacity=".18"/>
+            <path d="M580 340 L640 400 M740 340 L800 400" opacity=".2"/>
+            <path d="M690 80 L690 420 M530 250 L850 250" opacity=".18"/>
+            <path d="M660 220 L690 180 L720 220 L690 280 Z" opacity=".4"/>
+          </g>
+        </svg>
+      </div>
+
+      <header class="title-topline">
+        <span class="brandmark"><svg class="icon"><use href="#i-wolf"/></svg> A fan-made tribute</span>
+        <span class="title-topline__right">Toussaint, 1275</span>
+      </header>
+
+      <main class="title-layout">
+        <div class="title-copy">
+          <p class="eyebrow">The tavern table awaits</p>
+          <h1 class="game-title">GWENT</h1>
+          <p class="game-subtitle">A Witcher&rsquo;s card game</p>
+          <p class="title-lede">
+            Two armies. Three rounds. One deck. Call your banners, read the weather,
+            and outwit your opponent in the card game that emptied the taverns of the Continent.
+          </p>
+          <div class="title-actions">
+            <button class="btn btn--primary btn--large" id="btn-play">
+              <span>Play a round</span>
+              <svg class="icon"><use href="#i-chevron"/></svg>
+            </button>
+            <button class="btn btn--ghost" id="btn-collection">The cards</button>
+            <button class="btn btn--ghost" id="btn-rules-title">How to play</button>
+          </div>
+          <blockquote class="tavern-quote">
+            &ldquo;Care for a round of Gwent?&rdquo;
+            <cite>— every innkeeper on the Continent</cite>
+          </blockquote>
+        </div>
+
+        <div class="title-showcase" aria-hidden="true">
+          <div class="showcase-card showcase-card--left" id="title-card-1"></div>
+          <div class="showcase-card showcase-card--center" id="title-card-2"></div>
+          <div class="showcase-card showcase-card--right" id="title-card-3"></div>
+          <div class="fate-coin" id="title-coin">
+            <div class="fate-coin__face fate-coin__face--front"><svg class="icon"><use href="#i-wolf"/></svg></div>
+            <div class="fate-coin__face fate-coin__face--back"><svg class="icon"><use href="#i-sun"/></svg></div>
+            <div class="fate-coin__edge"></div>
+          </div>
+          <div class="showcase-plaque">
+            <span>THE FATE OF THE NORTH</span>
+            <strong>WIN TWO ROUNDS</strong>
+          </div>
+        </div>
+      </main>
+
+      <footer class="title-footer">
+        <span>Unofficial recreation. All cards, names and lore belong to CD PROJEKT RED.</span>
+        <span class="title-footer__seal"><svg class="icon"><use href="#i-gem"/></svg> Best played with sound on</span>
+      </footer>
+    </section>
+
+    <!-- ============================== SETUP ============================== -->
+    <section id="screen-setup" class="screen screen--setup hidden">
+      <header class="setup-header">
+        <button class="btn btn--quiet btn--back" id="btn-setup-back">
+          <svg class="icon"><use href="#i-chevron"/></svg> Back
+        </button>
+        <div class="setup-title">
+          <p class="eyebrow">Prepare for battle</p>
+          <h2>Choose your banner</h2>
+        </div>
+        <button class="btn btn--quiet" id="btn-setup-rules">How to play</button>
+      </header>
+
+      <main class="setup-layout">
+        <div class="setup-factions">
+          <div class="faction-grid" id="faction-grid" role="list"></div>
+          <div class="setup-deckbar" id="setup-deckbar"></div>
+        </div>
+
+        <aside class="setup-side">
+          <div class="parchment-panel setup-command">
+            <p class="eyebrow">Your commander</p>
+            <div id="leader-list" class="leader-list"></div>
+          </div>
+          <div class="setup-opponent" id="setup-opponent"></div>
+          <button class="btn btn--primary btn--large btn--start" id="btn-start" disabled>
+            <span>Take your seat</span>
+            <svg class="icon"><use href="#i-sword"/></svg>
+          </button>
+          <p class="setup-hint">The opponent's banner is drawn at random. The coin decides who speaks first — unless the elves have other ideas.</p>
+        </aside>
+      </main>
+    </section>
+
+    <!-- ============================== TABLE ============================== -->
+    <section id="screen-table" class="screen screen--table hidden">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="icon-btn" id="btn-menu" title="Menu" aria-label="Open menu">
+            <svg class="icon"><use href="#i-menu"/></svg>
+          </button>
+          <div class="table-wordmark">GWENT <span>·</span> <em id="topbar-round">ROUND I</em></div>
+        </div>
+        <div class="topbar__center" id="round-tracker"></div>
+        <div class="topbar__right">
+          <button class="icon-btn" id="btn-chronicle" title="Chronicle" aria-label="Open the chronicle">
+            <svg class="icon"><use href="#i-scroll"/></svg>
+          </button>
+          <button class="icon-btn" id="btn-sound" title="Sound" aria-label="Toggle sound">
+            <svg class="icon"><use href="#i-sound-on"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="table-wrap">
+        <div class="board" id="board">
+          <div class="hud hud--enemy" id="hud-enemy"></div>
+          <div class="battlefield battlefield--enemy" id="rows-enemy"></div>
+          <div class="weather-strip" id="weather-strip"></div>
+          <div class="battlefield battlefield--player" id="rows-player"></div>
+          <div class="hud hud--player" id="hud-player"></div>
+          <div class="hand-zone" id="hand-zone">
+            <div class="hand-zone__vignette"></div>
+            <div class="hand-count" id="hand-count" aria-live="polite">
+              <svg class="icon"><use href="#i-scroll"/></svg>
+              <span>Your hand</span>
+              <strong>0</strong>
+            </div>
+            <div class="hand" id="hand"></div>
+            <div class="table-actions" id="table-actions">
+              <button class="pass-seal" id="btn-pass" title="Pass the round">
+                <span class="pass-seal__ring"></span>
+                <span class="pass-seal__label">Pass</span>
+              </button>
+            </div>
+            <div class="hand-hint" id="hand-hint"></div>
+          </div>
+        </div>
+      </main>
+
+      <div class="toast-stack" id="toast-stack"></div>
+      <div class="thinking" id="thinking" hidden>
+        <svg class="icon"><use href="#i-eye"/></svg>
+        <span></span><span></span><span></span>
+        <em>Opponent is considering the board&hellip;</em>
+      </div>
+    </section>
+
+    <!-- ============================== OVERLAYS ============================== -->
+    <div id="modal-root" class="modal-root" hidden></div>
+    <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+
+    <div id="coin-overlay" class="coin-overlay hidden">
+      <div class="coin-overlay__inner">
+        <p class="eyebrow" id="coin-kicker">The coin is cast</p>
+        <div class="coin-stage">
+          <div class="fate-coin fate-coin--flip" id="flip-coin">
+            <div class="fate-coin__face fate-coin__face--front"><svg class="icon"><use href="#i-wolf"/></svg></div>
+            <div class="fate-coin__face fate-coin__face--back"><svg class="icon"><use href="#i-sun"/></svg></div>
+            <div class="fate-coin__edge"></div>
+          </div>
+        </div>
+        <h2 id="coin-result">The wolf shows its teeth</h2>
+        <p id="coin-detail">You take the first turn.</p>
+        <button class="btn btn--primary hidden" id="btn-coin-continue">Continue</button>
+      </div>
+    </div>
+
+    <div id="round-overlay" class="round-overlay hidden"></div>
+    <div id="game-over" class="game-over hidden"></div>
+  </div>
+
+  <!-- ============================== ICONS ============================== -->
+  <svg aria-hidden="true" class="svg-sprite" width="0" height="0">
+    <defs>
+      <symbol id="i-sword" viewBox="0 0 64 64">
+        <path d="M32 3l7 12-4 27h-6l-4-27z" fill="currentColor"/>
+        <path d="M14 40h36v6H14z" fill="currentColor"/>
+        <path d="M29 46h6v11h-6z" fill="currentColor"/>
+        <circle cx="32" cy="59" r="4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-bow" viewBox="0 0 64 64">
+        <path d="M49 7C31 15 23 31 24 57" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        <path d="M49 7L24 57" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M14 35h34" fill="none" stroke="currentColor" stroke-width="3"/>
+        <path d="M44 30l9 5-9 5z" fill="currentColor"/>
+        <path d="M14 31l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="i-catapult" viewBox="0 0 64 64">
+        <path d="M8 53h48v5H8z" fill="currentColor"/>
+        <path d="M17 53V40h8v13zM39 53V40h8v13z" fill="currentColor"/>
+        <circle cx="20" cy="52" r="8" fill="none" stroke="currentColor" stroke-width="4"/>
+        <circle cx="44" cy="52" r="8" fill="none" stroke="currentColor" stroke-width="4"/>
+        <path d="M14 39l28-31 4 4-26 31z" fill="currentColor"/>
+        <path d="M42 8c4 5 7 6 13 5" fill="none" stroke="currentColor" stroke-width="3"/>
+        <circle cx="55" cy="13" r="4" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-crown" viewBox="0 0 64 64">
+        <path d="M8 20l12 12 12-19 12 19 12-12-5 32H13z" fill="currentColor"/>
+        <circle cx="8" cy="17" r="4" fill="currentColor"/>
+        <circle cx="32" cy="10" r="4" fill="currentColor"/>
+        <circle cx="56" cy="17" r="4" fill="currentColor"/>
+        <path d="M17 45h30v6H17z" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-wolf" viewBox="0 0 64 64">
+        <path d="M8 7l14 11h20L56 7l-5 25c-2 14-9 22-19 26C22 54 15 46 13 32z" fill="currentColor"/>
+        <path d="M19 26l8 6-4 5zM45 26l-8 6 4 5z" fill="var(--card-bg, #16130e)"/>
+        <path d="M32 37l-6 7 6 8 6-8z" fill="var(--card-bg, #16130e)"/>
+        <path d="M8 7l14 11-8 10zM56 7L42 18l8 10z" fill="currentColor" opacity=".6"/>
+      </symbol>
+      <symbol id="i-bear" viewBox="0 0 64 64">
+        <circle cx="15" cy="16" r="10" fill="currentColor"/>
+        <circle cx="49" cy="16" r="10" fill="currentColor"/>
+        <path d="M32 8c15 0 24 11 24 25S47 57 32 57 8 47 8 33 17 8 32 8z" fill="currentColor"/>
+        <ellipse cx="32" cy="41" rx="11" ry="9" fill="var(--card-bg, #16130e)"/>
+        <circle cx="23" cy="29" r="3" fill="var(--card-bg, #16130e)"/>
+        <circle cx="41" cy="29" r="3" fill="var(--card-bg, #16130e)"/>
+        <path d="M28 38h8l-4 5z" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-bat" viewBox="0 0 64 64">
+        <path d="M32 25c5-8 12-10 17-8-2 5-1 9 4 13-6 1-9 4-10 10-4-5-7-7-11-7s-7 2-11 7c-1-6-4-9-10-10 5-4 6-8 4-13 5-2 12 0 17 8z" fill="currentColor"/>
+        <path d="M28 36h8l-4 18z" fill="currentColor"/>
+        <circle cx="27" cy="25" r="2" fill="var(--card-bg, #16130e)"/>
+        <circle cx="37" cy="25" r="2" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-skull" viewBox="0 0 64 64">
+        <path d="M32 6c15 0 24 10 24 23 0 8-4 13-10 16v13H18V45C12 42 8 37 8 29 8 16 17 6 32 6z" fill="currentColor"/>
+        <ellipse cx="22" cy="27" rx="6" ry="7" fill="var(--card-bg, #16130e)"/>
+        <ellipse cx="42" cy="27" rx="6" ry="7" fill="var(--card-bg, #16130e)"/>
+        <path d="M28 38h8l-4 8z" fill="var(--card-bg, #16130e)"/>
+        <path d="M24 50h4v8h-4zM30 50h4v8h-4zM36 50h4v8h-4z" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-dragon" viewBox="0 0 64 64">
+        <path d="M4 34c8-2 12-8 14-18 4 8 6 12 12 14-4-8-2-16 4-22 1 10 6 16 15 19-5 3-8 6-9 11 7 1 13 5 18 12-9-3-17-1-23 5-2-7-7-11-15-12 3 5 3 10 0 15-2-8-7-13-14-15 5-1 8-4 10-9-5 1-8 0-12-4z" fill="currentColor"/>
+        <circle cx="45" cy="14" r="2" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-leaf" viewBox="0 0 64 64">
+        <path d="M52 8C29 8 12 20 12 39c0 6 2 11 6 15 5-18 16-27 30-31-12 7-20 17-24 33 4 2 8 3 12 3 17 0 24-19 16-51z" fill="currentColor"/>
+        <path d="M18 54C28 36 39 26 54 20" fill="none" stroke="var(--card-bg, #16130e)" stroke-width="2" opacity=".5"/>
+      </symbol>
+      <symbol id="i-hammer" viewBox="0 0 64 64">
+        <path d="M18 6l16 16-9 9L9 15z" fill="currentColor"/>
+        <path d="M31 26L53 48l-6 6-22-22z" fill="currentColor"/>
+        <path d="M43 38l12 12-7 7-12-12z" fill="currentColor" opacity=".65"/>
+      </symbol>
+      <symbol id="i-ship" viewBox="0 0 64 64">
+        <path d="M7 40h50l-7 13c-1 2-3 3-5 3H19c-2 0-4-1-5-3z" fill="currentColor"/>
+        <path d="M31 4h4v34h-4z" fill="currentColor"/>
+        <path d="M36 10c10 2 16 7 19 14H36zM27 13c-8 2-13 6-16 11h16z" fill="currentColor" opacity=".7"/>
+        <path d="M5 40c7 5 14 5 19 0 6 5 12 5 18 0 5 5 10 5 17 0" fill="none" stroke="currentColor" stroke-width="3"/>
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 64 64">
+        <path d="M32 4l24 8v18c0 15-10 25-24 30C18 55 8 45 8 30V12z" fill="currentColor"/>
+        <path d="M32 13l15 5v12c0 10-6 17-15 21-9-4-15-11-15-21V18z" fill="var(--card-bg, #16130e)" opacity=".55"/>
+        <path d="M22 30l7 7 14-15" fill="none" stroke="currentColor" stroke-width="4"/>
+      </symbol>
+      <symbol id="i-dagger" viewBox="0 0 64 64">
+        <path d="M32 4l6 10-4 26h-4L26 14z" fill="currentColor"/>
+        <path d="M20 40h24v5H20z" fill="currentColor"/>
+        <path d="M29 45h6v14h-6z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-hood" viewBox="0 0 64 64">
+        <path d="M32 5c13 0 22 11 22 25 0 8-3 14-7 18l-4-15H21l-4 15c-4-4-7-10-7-18C10 16 19 5 32 5z" fill="currentColor"/>
+        <path d="M22 34c2-4 6-6 10-6s8 2 10 6l2 12-7 5v8h-10v-8l-7-5z" fill="var(--card-bg, #16130e)"/>
+        <circle cx="27" cy="35" r="2" fill="currentColor"/>
+        <circle cx="37" cy="35" r="2" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-cross" viewBox="0 0 64 64">
+        <path d="M25 6h14v19h19v14H39v19H25V39H6V25h19z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-lute" viewBox="0 0 64 64">
+        <path d="M39 8l17 17-5 5-4-4-10 10c5 10 2 19-6 24-9 6-20 2-24-6-5-10 1-20 10-23l8-9-4-4z" fill="currentColor"/>
+        <circle cx="24" cy="44" r="7" fill="var(--card-bg, #16130e)"/>
+        <path d="M45 14l6 6" stroke="var(--card-bg, #16130e)" stroke-width="3"/>
+      </symbol>
+      <symbol id="i-snow" viewBox="0 0 64 64">
+        <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M32 4v56M8 18l48 28M8 46l48-28"/>
+          <path d="M32 12l-7-6M32 12l7-6M32 52l-7 6M32 52l7 6"/>
+          <path d="M14 24l-9 1M22 29l-3 9M50 40l9-1M42 35l3-9"/>
+          <path d="M14 40l-9-1M22 35l-3-9M50 24l9 1M42 29l3 9"/>
+        </g>
+      </symbol>
+      <symbol id="i-fog" viewBox="0 0 64 64">
+        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+          <path d="M8 18c8-5 14 5 22 0s14-5 22 0"/>
+          <path d="M8 32c8-5 14 5 22 0s14-5 22 0"/>
+          <path d="M8 46c8-5 14 5 22 0s14-5 22 0"/>
+        </g>
+      </symbol>
+      <symbol id="i-rain" viewBox="0 0 64 64">
+        <path d="M14 38c-6 0-10-5-10-11 0-7 6-12 13-11 3-8 10-12 18-11 8 1 13 7 14 14 7 0 11 4 11 10 0 5-4 9-10 9z" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+          <path d="M18 45l-4 10M32 45l-4 10M46 45l-4 10"/>
+        </g>
+      </symbol>
+      <symbol id="i-storm" viewBox="0 0 64 64">
+        <path d="M14 34c-6 0-10-5-10-11 0-7 6-12 13-11 3-8 10-12 18-11 8 1 13 7 14 14 7 0 11 4 11 10 0 5-4 9-10 9z" fill="currentColor"/>
+        <path d="M34 34L18 54h12l-4 10 20-24H34l4-6z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="13" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+          <path d="M32 4v8M32 52v8M4 32h8M52 32h8M12 12l6 6M46 46l6 6M52 12l-6 6M18 46l-6 6"/>
+        </g>
+      </symbol>
+      <symbol id="i-horn" viewBox="0 0 64 64">
+        <path d="M6 46c14 6 29 2 38-10 5-7 7-16 5-26 7 3 11 12 10 21-1 17-16 29-33 29-8 0-14-3-20-8z" fill="currentColor"/>
+        <circle cx="9" cy="46" r="8" fill="none" stroke="currentColor" stroke-width="4"/>
+        <path d="M30 33c-4 2-6 6-6 10M39 22c-4 2-7 7-7 12" fill="none" stroke="var(--card-bg, #16130e)" stroke-width="3" opacity=".6"/>
+      </symbol>
+      <symbol id="i-flame" viewBox="0 0 64 64">
+        <path d="M33 3c4 13-3 18-8 25-4 6-6 12-3 19 2 5 7 9 13 9 10 0 17-8 17-18 0-13-10-19-13-27-1 8-2 12-5 15 2-10 0-17-1-23z" fill="currentColor"/>
+        <path d="M32 39c2 5 0 9-4 12 2 3 9 2 11-3 2-4-2-8-7-9z" fill="var(--card-bg, #16130e)" opacity=".5"/>
+      </symbol>
+      <symbol id="i-mask" viewBox="0 0 64 64">
+        <path d="M8 16c8-5 16-5 24-1 8-4 16-4 24 1 0 17-7 32-24 40C15 48 8 33 8 16z" fill="currentColor"/>
+        <path d="M17 24c4-3 9-3 12 0-3 5-9 5-12 0zM35 24c4-3 9-3 12 0-3 5-9 5-12 0z" fill="var(--card-bg, #16130e)"/>
+        <path d="M27 42c3-2 7-2 10 0-2 4-8 4-10 0z" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-mushroom" viewBox="0 0 64 64">
+        <path d="M6 30C8 16 19 7 32 7s24 9 26 23c-8 5-17 7-26 7S14 35 6 30z" fill="currentColor"/>
+        <path d="M26 36h12l3 20H23z" fill="currentColor" opacity=".7"/>
+        <circle cx="22" cy="21" r="4" fill="var(--card-bg, #16130e)"/>
+        <circle cx="40" cy="17" r="3" fill="var(--card-bg, #16130e)"/>
+        <circle cx="37" cy="28" r="2" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-paw" viewBox="0 0 64 64">
+        <ellipse cx="32" cy="44" rx="17" ry="13" fill="currentColor"/>
+        <ellipse cx="13" cy="25" rx="7" ry="9" fill="currentColor" transform="rotate(-20 13 25)"/>
+        <ellipse cx="25" cy="15" rx="7" ry="9" fill="currentColor"/>
+        <ellipse cx="39" cy="15" rx="7" ry="9" fill="currentColor"/>
+        <ellipse cx="51" cy="25" rx="7" ry="9" fill="currentColor" transform="rotate(20 51 25)"/>
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 64 64">
+        <path d="M4 32c8-13 17-19 28-19s20 6 28 19c-8 13-17 19-28 19S12 45 4 32z" fill="currentColor"/>
+        <circle cx="32" cy="32" r="10" fill="var(--card-bg, #16130e)"/>
+        <circle cx="32" cy="32" r="5" fill="currentColor"/>
+        <circle cx="29" cy="29" r="2" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-coins" viewBox="0 0 64 64">
+        <ellipse cx="24" cy="42" rx="17" ry="12" fill="currentColor"/>
+        <ellipse cx="24" cy="38" rx="17" ry="12" fill="var(--card-bg, #16130e)" opacity=".35"/>
+        <ellipse cx="24" cy="38" rx="17" ry="12" fill="none" stroke="currentColor" stroke-width="3"/>
+        <ellipse cx="42" cy="26" rx="14" ry="10" fill="currentColor"/>
+        <ellipse cx="42" cy="23" rx="14" ry="10" fill="var(--card-bg, #16130e)" opacity=".35"/>
+        <ellipse cx="42" cy="23" rx="14" ry="10" fill="none" stroke="currentColor" stroke-width="3"/>
+      </symbol>
+      <symbol id="i-tower" viewBox="0 0 64 64">
+        <path d="M14 54V24h8v6h6v-6h8v6h6v-6h8v30z" fill="currentColor"/>
+        <path d="M8 58h48v4H8zM22 38h8v7h-8zM34 38h8v7h-8z" fill="currentColor"/>
+        <path d="M28 58V44h8v14z" fill="var(--card-bg, #16130e)" opacity=".5"/>
+      </symbol>
+      <symbol id="i-horse" viewBox="0 0 64 64">
+        <path d="M10 54c2-12 9-19 21-20l-4-8 10-12 2 10 12 2-4 8 5 20h-8l-4-17c-5 2-8 7-9 17z" fill="currentColor"/>
+        <path d="M37 22l10 4" stroke="currentColor" stroke-width="3"/>
+        <circle cx="43" cy="19" r="2" fill="var(--card-bg, #16130e)"/>
+      </symbol>
+      <symbol id="i-claw" viewBox="0 0 64 64">
+        <g fill="currentColor">
+          <path d="M12 10c9 11 13 24 12 44-7-13-13-28-12-44z"/>
+          <path d="M28 4c8 14 10 28 8 48-7-14-10-31-8-48z"/>
+          <path d="M44 8c7 13 9 25 6 44-6-14-8-30-6-44z"/>
+          <path d="M56 18c5 10 5 21 1 34-4-11-5-23-1-34z"/>
+        </g>
+      </symbol>
+      <symbol id="i-gem" viewBox="0 0 64 64">
+        <path d="M20 6h24l14 18-26 34L6 24z" fill="currentColor"/>
+        <path d="M20 6l12 18L44 6M6 24h52M32 24v34" fill="none" stroke="var(--card-bg, #16130e)" stroke-width="2" opacity=".45"/>
+      </symbol>
+      <symbol id="i-scroll" viewBox="0 0 64 64">
+        <path d="M14 8h34v44c0 5 4 8 8 8H22c-5 0-8-3-8-8z" fill="currentColor"/>
+        <path d="M14 8c-5 0-8 3-8 8s3 8 8 8h8V8zM48 8c5 0 8 3 8 8s-3 8-8 8h-8V8z" fill="currentColor" opacity=".7"/>
+        <path d="M24 28h20M24 36h20M24 44h12" stroke="var(--card-bg, #16130e)" stroke-width="2" opacity=".5"/>
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 64 64">
+        <g fill="currentColor">
+          <path d="M10 16h44v6H10zM10 29h44v6H10zM10 42h44v6H10z"/>
+        </g>
+      </symbol>
+      <symbol id="i-chevron" viewBox="0 0 64 64">
+        <path d="M22 10l22 22-22 22-6-6 16-16-16-16z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-sound-on" viewBox="0 0 64 64">
+        <path d="M8 24h10L32 12v40L18 40H8z" fill="currentColor"/>
+        <path d="M40 22c4 3 6 6 6 10s-2 7-6 10M46 15c6 5 9 10 9 17s-3 12-9 17" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-sound-off" viewBox="0 0 64 64">
+        <path d="M8 24h10L32 12v40L18 40H8z" fill="currentColor"/>
+        <path d="M42 24l14 16M56 24L42 40" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 64 64">
+        <path d="M14 9l41 41-5 5L9 14zM50 9l5 5L14 55l-5-5z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 64 64">
+        <path d="M6 34l13 13L56 10l7 7-35 37L0 27z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 64 64">
+        <path d="M32 3l7 20 21 1-17 13 6 21-17-13-17 13 6-21L4 24l21-1z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-anvil" viewBox="0 0 64 64">
+        <path d="M6 16h38c5 0 8 3 9 8 1 4-1 8-5 10l-4 2 8 14H12l8-14-8-4c-4-2-6-6-6-16z" fill="currentColor"/>
+        <path d="M26 34h12v16H26z" fill="currentColor" opacity=".6"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+
+# Optional local sound pack (user-supplied, may be copyrighted)
+# Keep the README, ignore the audio files themselves.
+assets/audio/*
+!assets/audio/README.md

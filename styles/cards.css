@@ -1,0 +1,534 @@
+/* ==========================================================================
+   Cards — filigree frames, faction art, strength gems
+   ========================================================================== */
+
+.card {
+  --cw: 104px;
+  --card-bg: #16130e;
+  --card-faction: var(--faction);
+  position: relative;
+  width: var(--cw);
+  aspect-ratio: 5 / 7;
+  flex: none;
+  border-radius: 5px;
+  border: 1px solid rgba(222, 187, 120, 0.5);
+  background:
+    linear-gradient(145deg, rgba(255, 238, 195, 0.1), transparent 24%),
+    linear-gradient(180deg, #2a2318, #120f0a);
+  box-shadow:
+    0 1px 0 rgba(255, 240, 202, 0.18) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    var(--shadow-card);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.24s var(--ease-out), box-shadow 0.24s, border-color 0.2s, filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(229, 197, 136, 0.28);
+  border-radius: 3px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 42%, rgba(255, 245, 217, 0.12) 47%, transparent 55%),
+    radial-gradient(ellipse at 50% 35%, transparent 45%, rgba(0, 0, 0, 0.32) 100%);
+  opacity: 0.7;
+}
+
+.card--faction-northern { --card-faction: var(--faction-northern); }
+.card--faction-nilfgaard { --card-faction: var(--faction-nilfgaard); }
+.card--faction-scoiatael { --card-faction: var(--faction-scoiatael); }
+.card--faction-monsters { --card-faction: var(--faction-monsters); }
+.card--faction-skellige { --card-faction: var(--faction-skellige); }
+.card--faction-neutral { --card-faction: var(--faction-neutral); }
+
+/* --------------------------------------------------------------------------
+   Art field
+   -------------------------------------------------------------------------- */
+
+.card__art {
+  position: absolute;
+  inset: 3px;
+  overflow: hidden;
+  border-radius: 3px 3px 1px 1px;
+  background:
+    radial-gradient(ellipse 62% 58% at 50% 34%, color-mix(in srgb, var(--card-faction) 42%, transparent), transparent 78%),
+    radial-gradient(ellipse 100% 70% at 50% 110%, rgba(0, 0, 0, 0.6), transparent 70%),
+    linear-gradient(165deg, color-mix(in srgb, var(--card-faction) 34%, #151712), #0c0d0a 62%, #080806);
+}
+
+.card__art-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  pointer-events: none;
+}
+
+.card__art-img.is-missing {
+  display: none;
+}
+
+.card__art::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  opacity: 0.34;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23e7d4a3' stroke-width='0.6'%3E%3Cpath d='M-20 150C30 120 55 150 100 125S170 90 230 115'/%3E%3Cpath d='M-20 165C30 135 55 165 100 140S170 105 230 130'/%3E%3Cpath d='M-20 180C30 150 55 180 100 155S170 120 230 145'/%3E%3Ccircle cx='150' cy='55' r='34'/%3E%3Ccircle cx='150' cy='55' r='24'/%3E%3Cpath d='M150 10v90M105 55h90'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 170% auto;
+  transform: rotate(-4deg);
+  mix-blend-mode: soft-light;
+}
+
+.card__art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 30%, transparent 65%, rgba(0, 0, 0, 0.5)),
+    radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.card__icon-wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-bottom: 4%;
+  color: rgba(238, 224, 193, 0.82);
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.55));
+  z-index: 0;
+}
+
+.card__icon {
+  width: 54%;
+  height: 54%;
+  opacity: 0.92;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.card__art-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 13px, rgba(240, 221, 179, 0.035) 13px 14px),
+    radial-gradient(circle at 50% 45%, transparent 24%, rgba(0, 0, 0, 0.24) 30%, transparent 31%);
+}
+
+/* Hero cards ------------------------------------------------------------- */
+
+.card--hero {
+  border-color: rgba(245, 210, 137, 0.88);
+  box-shadow:
+    0 1px 0 rgba(255, 247, 215, 0.28) inset,
+    0 0 0 1px rgba(64, 41, 10, 0.85),
+    0 0 18px rgba(226, 184, 99, 0.18),
+    var(--shadow-card);
+}
+
+.card--hero .card__art {
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 32%, rgba(236, 201, 124, 0.32), transparent 68%),
+    radial-gradient(ellipse 100% 65% at 50% 110%, rgba(0, 0, 0, 0.64), transparent 70%),
+    linear-gradient(165deg, color-mix(in srgb, var(--card-faction) 44%, #262116), #0e0e0a 64%, #090806);
+}
+
+.card--hero .card__icon-wrap {
+  color: #f4e4ba;
+}
+
+.card--hero .card__art::after {
+  background:
+    linear-gradient(180deg, rgba(255, 226, 158, 0.12), transparent 22%, transparent 66%, rgba(0, 0, 0, 0.5)),
+    radial-gradient(ellipse at 50% 40%, transparent 28%, rgba(0, 0, 0, 0.38) 100%);
+}
+
+.card--hero::before {
+  border-color: rgba(255, 227, 160, 0.5);
+}
+
+.card--hero .card__faction-mark {
+  color: var(--brass-bright);
+}
+
+/* Strength gem ----------------------------------------------------------- */
+
+.card__strength {
+  position: absolute;
+  top: 4.5%;
+  left: 5%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 24%;
+  aspect-ratio: 0.9;
+  clip-path: polygon(50% 0, 100% 19%, 93% 72%, 50% 100%, 7% 72%, 0 19%);
+  background:
+    linear-gradient(160deg, #d9b873, #9b733c 46%, #5f4422);
+  border: 0;
+  color: #211708;
+  font-family: var(--font-condensed);
+  font-size: calc(var(--cw) * 0.22);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 rgba(255, 240, 200, 0.3);
+  box-shadow: inset 0 0 0 2px rgba(52, 34, 12, 0.4);
+}
+
+.card__strength::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  clip-path: inherit;
+  border: 1px solid rgba(255, 239, 198, 0.32);
+}
+
+.card--hero .card__strength {
+  background: linear-gradient(160deg, #f7e3ac, #e1ba6d 40%, #a57a39 78%, #6f4c1f);
+  color: #271a07;
+  box-shadow: inset 0 0 0 2px rgba(255, 246, 211, 0.22), 0 0 12px rgba(240, 203, 122, 0.3);
+}
+
+.card--special .card__strength {
+  display: none;
+}
+
+/* Row badge -------------------------------------------------------------- */
+
+.card__row {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 17%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--bone-dim);
+  background: rgba(10, 10, 7, 0.55);
+  border: 1px solid rgba(232, 204, 148, 0.24);
+  font-size: calc(var(--cw) * 0.105);
+  backdrop-filter: blur(2px);
+}
+
+.card__row .icon {
+  width: 60%;
+  height: 60%;
+  opacity: 0.8;
+}
+
+/* Ability pips ----------------------------------------------------------- */
+
+.card__abilities {
+  position: absolute;
+  left: 4.5%;
+  right: 4.5%;
+  bottom: 3%;
+  z-index: 4;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ability-pip {
+  display: grid;
+  place-items: center;
+  width: calc(var(--cw) * 0.16);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: #f0dfb8;
+  background: rgba(14, 13, 9, 0.82);
+  border: 1px solid rgba(200, 161, 94, 0.36);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  font-size: calc(var(--cw) * 0.09);
+}
+
+.ability-pip .icon {
+  width: 64%;
+  height: 64%;
+}
+
+.ability-pip--spy { color: #b3c7c1; border-color: rgba(141, 176, 168, 0.5); }
+.ability-pip--medic { color: #d8e0cc; border-color: rgba(170, 190, 155, 0.45); }
+.ability-pip--bond { color: #e4ce97; border-color: rgba(213, 181, 116, 0.5); }
+.ability-pip--morale { color: #e8b47e; border-color: rgba(216, 146, 91, 0.5); }
+.ability-pip--muster { color: #c6b3dc; border-color: rgba(169, 145, 195, 0.45); }
+.ability-pip--scorch { color: #ef9b72; border-color: rgba(214, 110, 74, 0.55); }
+.ability-pip--horn { color: #f0d38e; border-color: rgba(224, 190, 118, 0.55); }
+.ability-pip--mardroeme { color: #c9a3b4; border-color: rgba(187, 135, 158, 0.5); }
+.ability-pip--berserker { color: #c79a7a; border-color: rgba(190, 133, 100, 0.5); }
+.ability-pip--avenger { color: #cad0d4; border-color: rgba(157, 174, 184, 0.5); }
+.ability-pip--agile { color: #a9c8b8; border-color: rgba(132, 176, 157, 0.5); }
+
+/* Nameplate -------------------------------------------------------------- */
+
+.card__nameplate {
+  position: absolute;
+  inset: auto 0 0;
+  height: 22%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 3% 7% 2%;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(36, 29, 18, 0.96), rgba(14, 12, 8, 0.99));
+  border-top: 1px solid rgba(210, 175, 108, 0.34);
+}
+
+.card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: calc(var(--cw) * 0.093);
+  line-height: 1.08;
+  letter-spacing: 0.015em;
+  color: var(--bone);
+  text-wrap: balance;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card__faction-mark {
+  font-family: var(--font-condensed);
+  font-size: calc(var(--cw) * 0.056);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass-dep, #8e7142);
+  opacity: 0.8;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card--special .card__nameplate {
+  background: linear-gradient(180deg, rgba(30, 26, 18, 0.96), rgba(12, 11, 8, 0.99));
+}
+
+/* Card sizes ------------------------------------------------------------- */
+
+.card--board {
+  /* Fallback for browsers without size container queries: use the row token. */
+  --cw: calc((var(--row-h) - 14px) * 5 / 7);
+  height: calc(var(--row-h) - 14px);
+  width: auto;
+  aspect-ratio: 5 / 7;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Rows stretch to fill the battlefield, so the played cards size themselves
+   from the actual row height rather than the static --row-h token. */
+@supports (container-type: size) and (height: 100cqh) {
+  .card--board {
+    height: calc(100cqh - 6px);
+    --cw: calc((100cqh - 6px) * 5 / 7);
+  }
+}
+
+.card--board .card__name {
+  font-size: calc(var(--cw) * 0.115);
+}
+
+.card--board .card__faction-mark {
+  display: none;
+}
+
+.card--board .card__abilities {
+  gap: 2px;
+}
+
+.card--hand {
+  --cw: var(--hand-card-w);
+  cursor: pointer;
+}
+
+.card--collection {
+  --cw: clamp(112px, 9vw, 146px);
+  cursor: pointer;
+}
+
+.card--mini {
+  --cw: 76px;
+}
+
+.card--preview {
+  --cw: min(220px, 60vw);
+  cursor: default;
+}
+
+/* Interactive states ----------------------------------------------------- */
+
+.card--hand:hover {
+  z-index: 40;
+  transform: translateY(-18px) scale(1.06);
+  border-color: var(--brass-bright);
+  box-shadow:
+    0 1px 0 rgba(255, 247, 215, 0.28) inset,
+    0 0 0 1px rgba(50, 32, 8, 0.9),
+    0 20px 40px rgba(0, 0, 0, 0.55),
+    0 0 26px rgba(226, 184, 99, 0.16);
+}
+
+.card--hand.is-selected {
+  z-index: 45;
+  transform: translateY(-30px) scale(1.05);
+  border-color: var(--brass-bright);
+  box-shadow:
+    0 0 0 2px rgba(226, 184, 99, 0.5),
+    0 22px 44px rgba(0, 0, 0, 0.6),
+    0 0 32px rgba(226, 184, 99, 0.25);
+}
+
+.card--playable {
+  animation: card-ready 2.6s ease-in-out infinite;
+}
+
+.card.is-dimmed {
+  filter: grayscale(0.65) brightness(0.55);
+  opacity: 0.72;
+}
+
+.card.is-unplayable {
+  filter: grayscale(0.65) brightness(0.6);
+  opacity: 0.8;
+}
+
+.card--board.is-targetable {
+  cursor: pointer;
+}
+
+.card--board.is-targetable:hover {
+  transform: translateY(-4px);
+  border-color: var(--brass-bright);
+  box-shadow: 0 0 0 2px rgba(232, 203, 140, 0.45), 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.card.is-new {
+  animation: card-land 0.55s var(--ease-snap) both;
+}
+
+.card.is-dying {
+  animation: card-die 0.55s ease-in both;
+  pointer-events: none;
+}
+
+.card--just-played {
+  animation: card-slam 0.7s var(--ease-snap) both, card-played-glow 1.15s ease-out both;
+}
+
+/* Card back -------------------------------------------------------------- */
+
+.card-back {
+  width: var(--cw, 52px);
+  aspect-ratio: 5 / 7;
+  border-radius: 4px;
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid rgba(205, 170, 103, 0.5);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(200, 161, 94, 0.18), transparent 58%),
+    repeating-linear-gradient(45deg, rgba(240, 222, 183, 0.035) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, #302617, #17130c 60%, #100d08);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 238, 198, 0.12);
+}
+
+.card-back::before,
+.card-back::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 161, 94, 0.36);
+}
+
+.card-back::before {
+  inset: 8%;
+}
+
+.card-back::after {
+  inset: 16%;
+  border-style: double;
+  border-width: 3px;
+  opacity: 0.6;
+}
+
+.card-back__crest {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(207, 172, 108, 0.7);
+}
+
+.card-back__crest .icon {
+  width: 44%;
+  height: 44%;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
+.card-back--mini {
+  --cw: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   Inspect & deck pile
+   -------------------------------------------------------------------------- */
+
+.card-inspect {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+}
+
+.card-inspect__text {
+  max-width: 250px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--parchment-dim);
+  line-height: 1.5;
+}
+
+.card-inspect__text strong {
+  color: var(--brass-bright);
+  font-family: var(--font-condensed);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.mini-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
