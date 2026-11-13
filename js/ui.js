@@ -791,17 +791,6 @@
     var prevPassed = host.getAttribute('data-passed');
     var justPassed = passed && prevPassed !== '1';
     host.setAttribute('data-passed', passed ? '1' : '0');
-    var status = '';
-    if (state.phase === 'mulligan') status = 'Mulligan';
-    else if (state.phase === 'choosing') status = 'Choosing';
-    else if (state.phase === 'roundEnd') status = 'Round over';
-    else if (state.phase === 'gameover') status = 'Match over';
-    else if (passed) status = 'Passed';
-    else if (state.turn === side) status = side === 'player' ? 'Your move' : 'Their move';
-    else status = side === 'player' ? 'Waiting' : 'Opponent';
-    var ribbonCls = 'turn-ribbon';
-    if (passed) ribbonCls += ' is-passed';
-    else if (active) ribbonCls += ' is-active';
 
     UI.setFactionVars(host, faction ? faction.id : 'neutral');
     host.className = 'hud hud--' + side + (active ? ' is-active' : '') + (passed ? ' is-passed' : '');
@@ -830,9 +819,7 @@
         pileButton(side, 'grave', graveCount, 'i-skull', 'Discard pile', graveChanged ? 'is-changed' : '') +
         pileButton(side, 'hand', handCount, 'i-scroll', side === 'player' ? 'Your hand' : 'Opponent hand',
           'pile-btn--hand' + (handChanged ? ' is-changed' : '')) +
-      '</div>' +
-      '<div class="hud__status"><span class="' + ribbonCls + '">' +
-        use(passed ? 'i-cross' : active ? 'i-sword' : 'i-gem') + status + '</span></div>';
+      '</div>';
 
     var leaderBtn = host.querySelector('.hud__leader');
     if (leaderBtn) {
@@ -1022,8 +1009,6 @@
       counter.setAttribute('data-count', String(count));
     }
     var compact = window.innerWidth <= 760;
-    var overlap = count > 9 ? -38 : count > 7 ? -30 : count > 5 ? -22 : -14;
-    hand.style.setProperty('--hand-overlap', overlap + 'px');
     var selection = uiState.selection;
     var canAct = (state.phase === 'mulligan' && !state.mulligan.player.done) ||
       (state.phase === 'playing' && state.turn === 'player' && !state.passed.player);
@@ -1050,8 +1035,40 @@
       node.setAttribute('data-hand-index', String(index));
       hand.appendChild(node);
     });
+    spreadHand(hand, count, compact);
     hand.classList.toggle('is-disabled', !canAct);
     hand.classList.toggle('is-passed', !!state.passed.player);
+  }
+
+  /* Use the full tray width before falling back to overlap. The hand itself
+     shrink-wraps its cards, so measure the surrounding tray instead. */
+  function spreadHand(hand, count, compact) {
+    var first = hand.querySelector('.card--hand');
+    if (!first) {
+      hand.style.setProperty('--hand-overlap', '0px');
+      return;
+    }
+    var cardWidth = first.offsetWidth;
+    if (!cardWidth) return;
+    var zone = hand.parentElement;
+    var zoneWidth = zone ? zone.clientWidth : hand.clientWidth;
+    var style = window.getComputedStyle(hand);
+    var padLeft = parseFloat(style.paddingLeft) || 0;
+    var padRight = parseFloat(style.paddingRight) || 0;
+    var available = Math.max(cardWidth, zoneWidth - padLeft - padRight);
+    var gap = compact ? 2 : 10;
+    var maxSpread = available * (compact ? 1 : 0.82);
+    var spacing;
+    if (count <= 1) {
+      spacing = cardWidth;
+    } else if (cardWidth * count + gap * (count - 1) <= maxSpread) {
+      spacing = cardWidth + gap;
+    } else {
+      spacing = (maxSpread - cardWidth) / (count - 1);
+      var minSpacing = cardWidth * (compact ? 0.58 : 0.68);
+      spacing = Math.max(spacing, minSpacing);
+    }
+    hand.style.setProperty('--hand-overlap', (spacing - cardWidth).toFixed(1) + 'px');
   }
 
   function renderActions(state) {
@@ -2126,7 +2143,7 @@
       'hud-player', 'hud-enemy', 'rows-player', 'rows-enemy', 'weather-strip',
       'board', 'hand', 'table-actions', 'hand-hint', 'thinking',
       'coin-overlay', 'coin-kicker', 'flip-coin', 'coin-result', 'coin-detail', 'btn-coin-continue',
-      'round-overlay', 'game-over', 'fx-layer', 'card-preview', 'turn-banner'
+      'round-overlay', 'game-over', 'fx-layer', 'card-preview'
     ];
     ids.forEach(function (id) { UI.els[id] = $(id); });
     UI.els.modalRoot = $('modal-root');
@@ -2142,7 +2159,6 @@
     UI.els.gameOver = $('game-over');
     UI.els.fxLayer = $('fx-layer');
     UI.els.cardPreview = $('card-preview');
-    UI.els.turnBanner = $('turn-banner');
   }
 
   function bindStatic() {

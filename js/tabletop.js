@@ -238,14 +238,6 @@
     qa('.fx-horn-wave, .fx-weather-veil').forEach(removeNode);
   }
 
-  function hideTurnBanner() {
-    var banner = $('turn-banner');
-    if (!banner) return;
-    banner.hidden = true;
-    banner.classList.remove('is-on');
-    banner.innerHTML = '';
-  }
-
   function flush() {
     clearTimers();
     clearNumbers();
@@ -253,8 +245,7 @@
     var layer = fxLayer();
     if (layer) layer.innerHTML = '';
     var b = board();
-    if (b) b.classList.remove('is-resolving', 'is-turn-shift', 'is-leader-focus');
-    hideTurnBanner();
+    if (b) b.classList.remove('is-resolving', 'is-leader-focus');
     hideLeaderReveal();
     ctx = null;
   }
@@ -382,7 +373,6 @@
     var intent = act.intent || {};
     var card = intent.cardId ? G.CARDS[intent.cardId] : null;
     var isPlay = intent.type === 'play' && card;
-    var turnEvent = findEvent(act.events, 'turn');
     var passEvent = findEvent(act.events, 'pass');
     var roundEnd = findEvent(act.events, 'roundEnd');
     var matchEnd = findEvent(act.events, 'matchEnd');
@@ -398,8 +388,7 @@
     }
 
     scheduleEffects(act, state, effectDelay, t, !!isPlay);
-    var leaderReveal = null;
-    if (leaderEvent) leaderReveal = showLeaderReveal(act, state, leaderEvent.payload, intent);
+    if (leaderEvent) showLeaderReveal(act, state, leaderEvent.payload, intent);
     var drawDelay = isPlay ? t.commit + t.travel + t.place + (reduced() ? 0 : 100)
       : roundEnd ? 500 : 90;
     scheduleDraws(act, state, drawDelay, t);
@@ -451,17 +440,6 @@
       var b = board();
       if (b) b.classList.remove('is-resolving');
     }, resolveEnd);
-
-    if (turnEvent && !roundEnd && !matchEnd && state.phase === 'playing') {
-      var bannerDelay = Math.max(
-        isPlay ? t.commit + t.travel + t.place + t.impact + 80 : 160,
-        scoreDelay + t.score + 60
-      );
-      if (leaderReveal && leaderReveal.duration) {
-        bannerDelay = Math.max(bannerDelay, leaderReveal.duration + 60);
-      }
-      later(function () { showTurnBanner(state); }, bannerDelay);
-    }
   }
 
   /* ------------------------------------------------------------------------
@@ -1115,52 +1093,6 @@
   }
 
   /* ------------------------------------------------------------------------
-     Turn banner
-     ------------------------------------------------------------------------ */
-
-  function showTurnBanner(state) {
-    var banner = $('turn-banner');
-    if (!banner || !state || state.phase !== 'playing') return;
-    var overlay = $('round-overlay');
-    if (overlay && !overlay.classList.contains('hidden')) return;
-    if (UI.isModalOpen && UI.isModalOpen()) return;
-
-    var side = state.turn;
-    var factionId = E.factionOfSide(state, side);
-    var faction = G.FACTIONS[factionId] || G.FACTIONS.neutral;
-    var iconId = faction && faction.icon ? faction.icon : 'i-wolf';
-    var copy = side === 'player' ? 'Your move' : 'Opponent moves';
-    var eyebrow = side === 'player' ? 'The table turns to you' : 'The rival commander acts';
-
-    UI.setFactionVars(banner, factionId);
-    banner.className = 'turn-banner is-' + side;
-    banner.innerHTML =
-      '<div class="turn-banner__medallion">' + UI.icon(iconId) + '</div>' +
-      '<div class="turn-banner__copy">' +
-        '<span class="turn-banner__eyebrow">' + UI.esc(eyebrow) + '</span>' +
-        '<strong>' + UI.esc(copy) + '</strong>' +
-        '<em>' + UI.esc(faction ? faction.name : '') + ' · Round ' + UI.roman(state.round) + '</em>' +
-      '</div>';
-    banner.hidden = false;
-    var b = board();
-    if (b) b.classList.add('is-turn-shift');
-    window.requestAnimationFrame(function () {
-      banner.classList.add('is-on');
-    });
-
-    var t = timings();
-    later(function () {
-      banner.classList.remove('is-on');
-      if (b) b.classList.remove('is-turn-shift');
-    }, Math.max(160, t.banner - 230));
-    later(function () {
-      banner.hidden = true;
-      banner.className = 'turn-banner';
-      banner.innerHTML = '';
-    }, t.banner);
-  }
-
-  /* ------------------------------------------------------------------------
      Leader activation
      ------------------------------------------------------------------------ */
 
@@ -1286,9 +1218,7 @@
      ------------------------------------------------------------------------ */
 
   motion.roundReveal = function (info, state) {
-    hideTurnBanner();
     var b = board();
-    if (b) b.classList.remove('is-turn-shift');
     if (b) b.classList.add('is-round-over');
     var screen = $('screen-table');
     if (screen) screen.classList.add('is-round-overlay');
@@ -1310,7 +1240,6 @@
   };
 
   motion.finalReveal = function (result) {
-    hideTurnBanner();
     var b = board();
     if (b) b.classList.add('is-match-over');
     var screen = $('screen-table');

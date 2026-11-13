@@ -143,7 +143,7 @@
   height: var(--hud-h);
   flex: none;
   display: grid;
-  grid-template-columns: minmax(180px, 320px) auto minmax(150px, 1fr) auto auto;
+  grid-template-columns: minmax(180px, 320px) auto minmax(150px, 1fr) auto;
   align-items: center;
   gap: clamp(8px, 1.4vw, 18px);
   padding: 0 clamp(8px, 1.4vw, 18px);
@@ -510,48 +510,6 @@ button.hud__leader:hover {
 
 .pile-btn.is-empty {
   opacity: 0.45;
-}
-
-.hud__status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: flex-end;
-  min-width: 64px;
-}
-
-.turn-ribbon {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 4px 9px;
-  border-radius: 20px;
-  font-family: var(--font-condensed);
-  font-size: 0.61rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--parchment-dim);
-  border: 1px solid rgba(200, 161, 94, 0.2);
-  background: rgba(8, 10, 7, 0.35);
-}
-
-.turn-ribbon.is-active {
-  color: #1b1408;
-  background: linear-gradient(180deg, #e7cb8d, #b58c4e);
-  border-color: #eddaa6;
-  box-shadow: 0 0 14px rgba(226, 184, 99, 0.25);
-}
-
-.turn-ribbon.is-passed {
-  color: #c9a297;
-  border-color: rgba(165, 86, 71, 0.4);
-  background: rgba(104, 43, 38, 0.15);
-}
-
-.turn-ribbon .icon {
-  font-size: 0.8rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1349,7 +1307,7 @@ button.hud__leader:hover {
 
 @media (max-width: 1180px) {
   .hud {
-    grid-template-columns: minmax(160px, 320px) auto minmax(100px, 1fr) auto auto;
+    grid-template-columns: minmax(160px, 320px) auto minmax(100px, 1fr) auto;
     gap: 8px;
   }
 
@@ -1381,7 +1339,7 @@ button.hud__leader:hover {
   }
 
   .hud {
-    grid-template-columns: minmax(110px, 1fr) auto auto auto;
+    grid-template-columns: minmax(110px, 1fr) auto auto;
     gap: 6px;
     padding: 0 8px;
   }
@@ -1392,10 +1350,6 @@ button.hud__leader:hover {
 
   .hud__score-label {
     display: none;
-  }
-
-  .hud__status {
-    min-width: 0;
   }
 
   .row {
@@ -1532,18 +1486,11 @@ button.hud__leader:hover {
     height: clamp(28px, 4vh, 36px);
   }
 
-  /* Phones cannot fit the status ribbon beside the HUD's other blocks.
-     The hand hint carries the turn state instead, so the ribbon is dropped
-     rather than allowed to wrap beneath the HUD and overlap the rows. */
   .hud {
     grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 5px;
     padding: 0 7px;
     overflow: visible;
-  }
-
-  .hud__status {
-    display: none;
   }
 
   .hud__identity {
@@ -1946,16 +1893,6 @@ button.hud__leader:hover {
     font-size: 0.72rem;
     color: var(--brass-bright);
   }
-
-  .board .hud__status {
-    justify-content: center;
-    min-width: 0;
-  }
-
-  .board .turn-ribbon {
-    padding: 2px 7px;
-    font-size: 0.56rem;
-  }
 }
 
 /* Three or four active weather types make the stacked rail panel taller than
@@ -2019,7 +1956,6 @@ button.hud__leader:hover {
   }
 
   .board .hud__eyebrow,
-  .board .hud__status,
   .board .hud__gems-label { display: none; }
 
   .board .hud__leader-name { font-size: 0.66rem; }
