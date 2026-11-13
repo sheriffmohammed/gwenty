@@ -523,14 +523,14 @@
   background: radial-gradient(circle, rgba(214, 190, 152, 0.5), rgba(146, 120, 84, 0.18) 44%, transparent 72%);
 }
 
-.fx-puff--sun {
-  background: radial-gradient(circle, rgba(255, 238, 182, 0.72), rgba(226, 190, 108, 0.22) 44%, transparent 72%);
+.fx-puff--settle {
+  background: radial-gradient(circle, transparent 0 38%, rgba(226, 207, 172, 0.3) 52%, rgba(150, 122, 84, 0.13) 64%, transparent 76%);
+  mix-blend-mode: normal;
+  filter: blur(0.5px);
 }
 
-@keyframes fx-puff {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.28); }
-  22% { opacity: 0.82; }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.32); }
+.fx-puff--sun {
+  background: radial-gradient(circle, rgba(255, 238, 182, 0.72), rgba(226, 190, 108, 0.22) 44%, transparent 72%);
 }
 
 /* Card arrival ------------------------------------------------------------ */
@@ -544,11 +544,7 @@
   animation: card-landing 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) both;
 }
 
-@keyframes card-landing {
-  0% { transform: translateY(-6px) scale(1.06); filter: brightness(1.22); }
-  55% { transform: translateY(1px) scale(0.985); filter: brightness(1.04); }
-  100% { transform: translateY(0) scale(1); filter: brightness(1); }
-}
+/* Refined landing keyframes live in the tighter landing cues section below. */
 
 .card.is-summoned {
   animation: card-summon 0.62s cubic-bezier(0.2, 0.8, 0.3, 1) both;
@@ -1199,44 +1195,70 @@
 }
 
 .card__strength {
+  border-radius: 50%;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.32), transparent 30%),
+    radial-gradient(circle at 36% 26%, rgba(255, 255, 255, 0.58), transparent 34%),
     linear-gradient(160deg, #eef0ec, #b9c0bd 38%, #7f8988 72%, #4d5554);
   color: #141817;
   font-family: var(--font-display);
-  font-size: calc(var(--cw) * 0.19);
+  font-size: calc(var(--cw) * 0.2);
   font-weight: 700;
   letter-spacing: 0;
   text-shadow:
     0 1px 0 rgba(255, 255, 255, 0.55),
     0 -1px 0 rgba(24, 30, 29, 0.35);
   box-shadow:
-    inset 0 0 0 2px rgba(38, 45, 44, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 1px 3px rgba(0, 0, 0, 0.35);
+    inset 0 0 0 2px rgba(38, 45, 44, 0.42),
+    inset 0 2px 4px rgba(255, 255, 255, 0.45),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.28),
+    0 2px 5px rgba(0, 0, 0, 0.42);
 }
 
 .card__strength::before {
-  border-color: rgba(255, 255, 255, 0.42);
+  border-color: rgba(255, 255, 255, 0.44);
 }
 
 .card--hero .card__strength {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 30%),
+    radial-gradient(circle at 36% 26%, rgba(255, 255, 255, 0.62), transparent 34%),
     linear-gradient(160deg, #f7e3ac, #e1ba6d 40%, #a57a39 78%, #6f4c1f);
   color: #271a07;
   text-shadow:
     0 1px 0 rgba(255, 247, 215, 0.55),
     0 -1px 0 rgba(55, 32, 8, 0.4);
   box-shadow:
-    inset 0 0 0 2px rgba(255, 246, 211, 0.22),
-    inset 0 1px 0 rgba(255, 250, 225, 0.5),
-    0 0 12px rgba(240, 203, 122, 0.3);
+    inset 0 0 0 2px rgba(255, 246, 211, 0.28),
+    inset 0 2px 4px rgba(255, 250, 225, 0.5),
+    inset 0 -3px 6px rgba(66, 40, 8, 0.3),
+    0 0 12px rgba(240, 203, 122, 0.32);
 }
 
 /* --------------------------------------------------------------------------
    Score readability
    -------------------------------------------------------------------------- */
+
+.score-plate {
+  border-radius: 999px;
+  border-color: rgba(232, 197, 130, 0.5);
+  background:
+    radial-gradient(ellipse 80% 90% at 50% -12%, rgba(255, 240, 200, 0.22), transparent 62%),
+    radial-gradient(ellipse 95% 120% at 50% 120%, rgba(0, 0, 0, 0.55), transparent 70%),
+    linear-gradient(180deg, #2b2213, #171208 55%, #0e0b07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 210, 0.26),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.75),
+    inset 0 0 0 3px rgba(10, 9, 6, 0.46),
+    inset 0 0 16px rgba(0, 0, 0, 0.48),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.score-plate::before,
+.score-plate::after {
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle at 35% 30%, #f0d292, #8a642f 68%, #4b3414);
+  box-shadow: 0 0 4px rgba(232, 197, 130, 0.22);
+}
 
 .score-plate strong {
   color: #f3e4bd;
@@ -1244,13 +1266,17 @@
 }
 
 .row__score strong {
-  padding: 0 5px 1px;
-  border-radius: 2px;
+  padding: 2px 7px 2px;
+  border: 1px solid rgba(200, 161, 94, 0.26);
+  border-radius: 4px;
   color: #e9dcc0;
-  background: linear-gradient(180deg, rgba(8, 8, 6, 0.66), rgba(8, 8, 6, 0.38));
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 0%, rgba(255, 238, 198, 0.1), transparent 62%),
+    linear-gradient(180deg, rgba(32, 26, 16, 0.92), rgba(8, 8, 6, 0.84));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 0 10px 4px rgba(6, 6, 4, 0.35);
+    inset 0 1px 0 rgba(255, 238, 198, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 1px 3px rgba(0, 0, 0, 0.35);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 0, 0, 0.55);
 }
 
@@ -1529,6 +1555,26 @@
     0 8px 22px rgba(0, 0, 0, 0.42);
 }
 
+.leader-reveal__portrait::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 208, 138, 0.55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.leader-reveal.is-on .leader-reveal__portrait::after {
+  animation: leader-portrait-ring 0.62s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@keyframes leader-portrait-ring {
+  0% { opacity: 0.85; transform: scale(0.9); }
+  70% { opacity: 0.28; }
+  100% { opacity: 0; transform: scale(1.28); }
+}
+
 .leader-reveal__portrait-img {
   position: absolute;
   inset: 4px;
@@ -1643,6 +1689,18 @@
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
+.board .row {
+  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s, opacity 0.2s ease;
+}
+
+.board.is-leader-focus .row:not(.is-leader-target) {
+  opacity: 0.62;
+}
+
+.board.is-leader-focus .row.is-leader-target {
+  opacity: 1;
+}
+
 .card.is-leader-target {
   animation: leader-target-card 0.7s ease-out;
 }
@@ -1673,7 +1731,7 @@
    -------------------------------------------------------------------------- */
 
 .card.is-landing {
-  animation-duration: 0.22s;
+  animation-duration: 0.24s;
 }
 
 .card.is-major-landing {
@@ -1681,9 +1739,21 @@
 }
 
 @keyframes card-landing {
-  0% { transform: translateY(-4px) scale(1.035); filter: brightness(1.08); }
-  60% { transform: translateY(1px) scale(0.99); filter: brightness(1.02); }
-  100% { transform: translateY(0) scale(1); filter: brightness(1); }
+  0% {
+    transform: translateY(-4px) scale(1.03);
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 1px rgba(240, 208, 138, 0.18), 0 10px 22px rgba(0, 0, 0, 0.5);
+  }
+  45% {
+    transform: translateY(1px) scale(0.99);
+    filter: brightness(1.03);
+    box-shadow: 0 0 0 1px rgba(240, 208, 138, 0.12), 0 5px 12px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+    box-shadow: var(--shadow-card);
+  }
 }
 
 @keyframes card-landing-major {
@@ -1698,6 +1768,10 @@
 
 .fx-puff {
   animation-duration: 0.32s;
+}
+
+.fx-puff--settle {
+  animation-duration: 0.26s;
 }
 
 .fx-puff.is-major {
@@ -1736,6 +1810,7 @@
   .card.is-landing,
   .card.is-major-landing,
   .card.is-leader-target,
+  .leader-reveal__portrait::after,
   .card.is-summoned,
   .card.is-power-surge,
   .row.is-mardroeme-hit,
@@ -1758,6 +1833,10 @@
   }
 
   .leader-reveal {
+    transition-duration: 0.08s !important;
+  }
+
+  .board .row {
     transition-duration: 0.08s !important;
   }
 

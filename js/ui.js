@@ -173,6 +173,9 @@
     if (!card.special && value !== null && value !== card.strength) {
       strengthClass = value > card.strength ? ' is-buffed' : ' is-reduced';
     }
+    if (!card.special && value !== null && String(value).length > 1) {
+      strengthClass += ' is-two-digit';
+    }
 
     node.innerHTML =
       '<div class="card__art">' +

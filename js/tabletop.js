@@ -253,7 +253,7 @@
     var layer = fxLayer();
     if (layer) layer.innerHTML = '';
     var b = board();
-    if (b) b.classList.remove('is-resolving', 'is-turn-shift');
+    if (b) b.classList.remove('is-resolving', 'is-turn-shift', 'is-leader-focus');
     hideTurnBanner();
     hideLeaderReveal();
     ctx = null;
@@ -653,7 +653,8 @@
             dest.classList.remove('is-landing', 'is-major-landing');
           }, reduced() ? 140 : (major ? 320 : 250));
         }
-        puff(to, specialKind(card), major);
+        var puffKind = card.special ? specialKind(card) : (major ? 'gold' : 'settle');
+        puff(to, puffKind, major);
       }
     });
 
@@ -798,14 +799,15 @@
   function puff(rect, kind, major) {
     var layer = fxLayer();
     if (!layer || !rect) return;
+    var settle = kind === 'settle';
     var node = document.createElement('span');
     node.className = 'fx-puff fx-puff--' + (kind || 'gold') + (major ? ' is-major' : '');
     node.style.left = rect.cx + 'px';
     node.style.top = rect.cy + 'px';
-    node.style.width = Math.max(44, Math.min(140, rect.width * 0.9)) + 'px';
-    node.style.height = Math.max(44, Math.min(140, rect.height * 0.9)) + 'px';
+    node.style.width = Math.max(settle ? 30 : 44, Math.min(settle ? 84 : 140, rect.width * (settle ? 0.52 : 0.9))) + 'px';
+    node.style.height = Math.max(settle ? 30 : 44, Math.min(settle ? 84 : 140, rect.height * (settle ? 0.52 : 0.9))) + 'px';
     layer.appendChild(node);
-    later(function () { removeNode(node); }, reduced() ? 180 : (major ? 560 : 360));
+    later(function () { removeNode(node); }, reduced() ? 140 : (settle ? 280 : (major ? 560 : 360)));
   }
 
   function scheduleEffects(act, state, delay, t, isPlay) {
@@ -1200,7 +1202,11 @@
     var rival = side === 'enemy' ? 'player' : 'enemy';
     leaderTargetRows(act, leader, side).forEach(function (target) {
       var row = q('.row[data-side="' + target.side + '"][data-row="' + target.row + '"]');
-      if (row) pulse(row, 'is-leader-target', 720);
+      if (!row) return;
+      pulse(row, 'is-leader-target', 720);
+      qa('.card[data-uid]', row).forEach(function (node) {
+        pulse(node, 'is-leader-target', 720);
+      });
     });
 
     if (leader.action === 'doubleSpies') {
@@ -1260,6 +1266,11 @@
     node.classList.add('is-on');
 
     highlightLeaderTargets(act, state, leader, side);
+    var focusBoard = board();
+    if (focusBoard) focusBoard.classList.add('is-leader-focus');
+    later(function () {
+      if (focusBoard) focusBoard.classList.remove('is-leader-focus');
+    }, duration);
     later(function () { node.classList.remove('is-on'); }, Math.max(120, duration - fade));
     later(function () {
       if (node.classList.contains('is-on')) return;
