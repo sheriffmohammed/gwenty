@@ -160,7 +160,7 @@
     if (opts.isNew) classes.push('is-new');
     node.className = classes.join(' ');
     node.setAttribute('data-card-id', card.id);
-    node.setAttribute('data-tip', 'card');
+    if (opts.variant !== 'hand' && opts.variant !== 'flight') node.setAttribute('data-tip', 'card');
     if (opts.uid) node.setAttribute('data-uid', opts.uid);
     if (opts.boardSide) node.setAttribute('data-side', opts.boardSide);
     if (opts.owner) node.setAttribute('data-owner', opts.owner);
@@ -308,6 +308,7 @@
     document.addEventListener('pointerover', function (event) {
       var target = findTipTarget(event.target);
       if (!target || target === uiState.tooltipTarget) return;
+      if (target.closest && target.closest('.card--hand')) return;
       showTipFor(target, event.clientX, event.clientY);
     });
     document.addEventListener('pointermove', function (event) {
@@ -324,6 +325,7 @@
     document.addEventListener('focusin', function (event) {
       var target = findTipTarget(event.target);
       if (!target) return;
+      if (target.closest && target.closest('.card--hand')) return;
       var rect = target.getBoundingClientRect();
       showTipFor(target, rect.left + rect.width / 2, rect.top + rect.height / 2);
     });
@@ -768,9 +770,21 @@
     var prevHand = host.getAttribute('data-hand-count');
     var handChanged = prevHand !== null && prevHand !== String(handCount);
     host.setAttribute('data-hand-count', String(handCount));
+    var prevDeck = host.getAttribute('data-deck-count');
+    var deckChanged = prevDeck !== null && prevDeck !== String(deckCount);
+    host.setAttribute('data-deck-count', String(deckCount));
+    var prevGrave = host.getAttribute('data-grave-count');
+    var graveChanged = prevGrave !== null && prevGrave !== String(graveCount);
+    host.setAttribute('data-grave-count', String(graveCount));
     var prevScore = host.getAttribute('data-score');
     var scoreChanged = prevScore !== null && prevScore !== String(score);
     host.setAttribute('data-score', String(score));
+    var prevGems = host.getAttribute('data-gems');
+    var gemsChanged = prevGems !== null && prevGems !== String(gems);
+    host.setAttribute('data-gems', String(gems));
+    var prevPassed = host.getAttribute('data-passed');
+    var justPassed = passed && prevPassed !== '1';
+    host.setAttribute('data-passed', passed ? '1' : '0');
     var status = '';
     if (state.phase === 'mulligan') status = 'Mulligan';
     else if (state.phase === 'choosing') status = 'Choosing';
@@ -800,13 +814,14 @@
           '<span class="hud__leader-sub">' + UI.esc(leader ? leader.ability : '') + '</span>' +
         '</div>' +
       '</div>' +
-      '<div class="hud__gems"><span class="hud__gems-label">Gems</span>' + gemHtml + '</div>' +
+      '<div class="hud__gems' + (gemsChanged ? ' is-changed' : '') + '"><span class="hud__gems-label">Gems</span>' + gemHtml + '</div>' +
       '<div class="hud__score"><span class="hud__score-label">Strength</span>' +
         '<div class="score-plate' + (score > other ? ' is-leading' : '') + (scoreChanged ? ' is-bumped' : '') + '"><strong>' + score + '</strong></div>' +
+        (passed ? '<span class="pass-stamp' + (justPassed ? ' is-fresh' : '') + '" aria-label="Passed">Passed</span>' : '') +
       '</div>' +
       '<div class="hud__piles">' +
-        pileButton(side, 'deck', deckCount, 'i-tower', 'Deck') +
-        pileButton(side, 'grave', graveCount, 'i-skull', 'Discard pile') +
+        pileButton(side, 'deck', deckCount, 'i-tower', 'Deck', deckChanged ? 'is-changed' : '') +
+        pileButton(side, 'grave', graveCount, 'i-skull', 'Discard pile', graveChanged ? 'is-changed' : '') +
         pileButton(side, 'hand', handCount, 'i-scroll', side === 'player' ? 'Your hand' : 'Opponent hand',
           'pile-btn--hand' + (handChanged ? ' is-changed' : '')) +
       '</div>' +
@@ -1025,9 +1040,12 @@
       node.style.setProperty('--fan', fan.toFixed(2) + 'deg');
       node.style.setProperty('--hand-lift', lift.toFixed(1) + 'px');
       node.setAttribute('aria-label', card.name + (card.special ? '' : ', strength ' + card.strength));
+      node.setAttribute('aria-pressed', selection && selection.uid === inst.uid ? 'true' : 'false');
+      node.setAttribute('data-hand-index', String(index));
       hand.appendChild(node);
     });
     hand.classList.toggle('is-disabled', !canAct);
+    hand.classList.toggle('is-passed', !!state.passed.player);
   }
 
   function renderActions(state) {
@@ -1064,6 +1082,7 @@
     options = options || {};
     UI.state = state;
     if (!state) return;
+    if (UI.motion && UI.motion.beforeRender) UI.motion.beforeRender(state);
     var roundEl = $('topbar-round');
     if (roundEl) roundEl.textContent = 'ROUND ' + UI.roman(state.round);
     renderRoundTracker(state);
@@ -1095,6 +1114,7 @@
     var chronicle = $('btn-chronicle');
     if (chronicle) chronicle.disabled = false;
     UI.updateSoundButton();
+    if (UI.motion && UI.motion.afterRender) UI.motion.afterRender(state, options);
   }
 
   UI.renderTitle = renderTitle;
@@ -1991,6 +2011,7 @@
         '<p class="round-banner__footnote">' + UI.esc(footnote) + '</p>' +
       '</div>';
     els.roundOverlay.classList.remove('hidden');
+    if (UI.motion && UI.motion.roundReveal) UI.motion.roundReveal(info, state);
     var btn = els.roundOverlay.querySelector('[data-round-continue]');
     if (btn) {
       btn.addEventListener('click', function () {
@@ -2003,6 +2024,7 @@
 
   function hideRound() {
     if (UI.els.roundOverlay) UI.els.roundOverlay.classList.add('hidden');
+    if (UI.motion && UI.motion.roundHide) UI.motion.roundHide();
   }
 
   function showGameOver(result, state) {
@@ -2016,7 +2038,24 @@
       : result.winner === 'player'
         ? 'The table is yours. Let the tavern keep the tale.'
         : 'The enemy banner rises. The table falls silent.';
-    var stats = state.stats.player;
+    var stats = state.stats && state.stats.player
+      ? state.stats.player
+      : { roundsWon: 0, played: 0, leaderUsed: false };
+    var history = state && Array.isArray(state.roundHistory) ? state.roundHistory : [];
+    var roundsHtml = '';
+    if (history.length) {
+      roundsHtml = '<div class="game-over__rounds">' + history.map(function (entry) {
+        var roundWinner = entry.winner;
+        var cls = roundWinner === 'player' ? ' is-winner' : roundWinner === 'enemy' ? '' : ' is-tie';
+        var note = roundWinner === 'player' ? 'Won' : roundWinner === 'enemy' ? 'Lost'
+          : entry.tieBroken ? 'Tie broken' : 'Tie';
+        return '<div class="game-over__round' + cls + '">' +
+          '<span class="game-over__round-label">Round ' + UI.roman(entry.round) + '</span>' +
+          '<strong class="game-over__round-score">' + entry.scores.player + ' – ' + entry.scores.enemy + '</strong>' +
+          '<span class="game-over__round-note">' + UI.esc(note) + '</span>' +
+        '</div>';
+      }).join('') + '</div>';
+    }
     els.gameOver.className = 'game-over ' + cls;
     els.gameOver.innerHTML =
       '<div class="game-over__inner">' +
@@ -2027,6 +2066,7 @@
         '<p class="game-over__line">' + UI.esc(line) + '</p>' +
         '<div class="game-over__score"><span>Rounds won</span><b>' +
           state.roundsWon.player + ' – ' + state.roundsWon.enemy + '</b></div>' +
+        roundsHtml +
         '<div class="game-over__stats">' +
           '<div class="game-over__stat"><span>Rounds</span><strong>' + stats.roundsWon + '</strong></div>' +
           '<div class="game-over__stat"><span>Cards played</span><strong>' + stats.played + '</strong></div>' +
@@ -2041,6 +2081,7 @@
         '</div>' +
       '</div>';
     els.gameOver.classList.remove('hidden');
+    if (UI.motion && UI.motion.finalReveal) UI.motion.finalReveal(result, state);
     els.gameOver.querySelector('[data-game="rematch"]').addEventListener('click', function () { invoke('gameRematch'); });
     els.gameOver.querySelector('[data-game="setup"]').addEventListener('click', function () { invoke('gameSetup'); });
     els.gameOver.querySelector('[data-game="title"]').addEventListener('click', function () { invoke('gameTitle'); });
@@ -2051,6 +2092,7 @@
       UI.els.gameOver.classList.add('hidden');
       UI.els.gameOver.innerHTML = '';
     }
+    if (UI.motion && UI.motion.hideFinal) UI.motion.hideFinal();
   }
 
   /* ------------------------------------------------------------------------
@@ -2062,6 +2104,7 @@
       var screen = $('screen-' + key);
       if (screen) screen.classList.toggle('hidden', key !== name);
     });
+    if (name !== 'table' && UI.motion && UI.motion.reset) UI.motion.reset();
     UI.hideTip();
   }
 
@@ -2075,7 +2118,7 @@
       'hud-player', 'hud-enemy', 'rows-player', 'rows-enemy', 'weather-strip',
       'board', 'hand', 'table-actions', 'hand-hint', 'thinking',
       'coin-overlay', 'coin-kicker', 'flip-coin', 'coin-result', 'coin-detail', 'btn-coin-continue',
-      'round-overlay', 'game-over'
+      'round-overlay', 'game-over', 'fx-layer', 'card-preview', 'turn-banner'
     ];
     ids.forEach(function (id) { UI.els[id] = $(id); });
     UI.els.modalRoot = $('modal-root');
@@ -2089,6 +2132,9 @@
     UI.els.btnCoinContinue = $('btn-coin-continue');
     UI.els.roundOverlay = $('round-overlay');
     UI.els.gameOver = $('game-over');
+    UI.els.fxLayer = $('fx-layer');
+    UI.els.cardPreview = $('card-preview');
+    UI.els.turnBanner = $('turn-banner');
   }
 
   function bindStatic() {
@@ -2188,6 +2234,7 @@
     UI.updateSoundButton();
     UI.renderTitle();
     bindStatic();
+    if (UI.motion && UI.motion.init) UI.motion.init();
     UI.initialized = true;
   };
 

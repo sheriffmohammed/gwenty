@@ -111,6 +111,7 @@
     }
 
     cancelTimers();
+    if (UI.motion && UI.motion.reset) UI.motion.reset();
     UI.closeModal(true);
     UI.hideCoin();
     UI.hideRound();
@@ -309,8 +310,16 @@
     var state = app.state;
     if (!state || state.phase !== 'playing') return false;
     if (state.turn !== 'player' || state.passed.player) return false;
+    var inst = E.findHandCard(state, 'player', uid);
+    if (UI.motion) {
+      UI.motion.beginAction({
+        type: 'play', side: 'player', uid: uid,
+        cardId: inst ? inst.cardId : null, target: target || null
+      });
+    }
     var result = E.playCard(state, 'player', uid, target || null);
     if (!result.ok) {
+      if (UI.motion) UI.motion.cancel();
       UI.toast(result.reason || 'That card cannot be played.', 'danger');
       UI.playSound('error');
       UI.clearSelection(true);
@@ -324,8 +333,10 @@
   function handlePass() {
     var state = app.state;
     if (!state || state.phase !== 'playing' || state.turn !== 'player' || state.passed.player) return;
+    if (UI.motion) UI.motion.beginAction({ type: 'pass', side: 'player' });
     var result = E.pass(state, 'player');
     if (!result.ok) {
+      if (UI.motion) UI.motion.cancel();
       UI.toast(result.reason || 'You cannot pass right now.', 'danger');
       return;
     }
@@ -335,8 +346,10 @@
   function handleUseLeader() {
     var state = app.state;
     if (!state) return;
+    if (UI.motion) UI.motion.beginAction({ type: 'leader', side: 'player' });
     var result = E.useLeader(state, 'player');
     if (!result.ok) {
+      if (UI.motion) UI.motion.cancel();
       UI.toast(result.reason || 'Your leader cannot act right now.', 'danger');
       UI.playSound('error');
       return;
@@ -347,8 +360,10 @@
   function resolvePlayerChoice(payload) {
     var state = app.state;
     if (!state || state.phase !== 'choosing' || !state.pending || state.pending.side !== 'player') return false;
+    if (UI.motion) UI.motion.beginAction({ type: 'choice', side: 'player' });
     var result = E.resolveChoice(state, 'player', payload);
     if (!result.ok) {
+      if (UI.motion) UI.motion.cancel();
       UI.toast(result.reason || 'That choice cannot be made.', 'danger');
       UI.playSound('error');
       return false;
@@ -370,8 +385,13 @@
       if (state.pending.side === 'player') {
         UI.openChoice(state.pending, resolvePlayerChoice);
       } else {
-        UI.renderTable(state, { thinking: true });
-        schedulePendingResolution(1200);
+        window.setTimeout(function () {
+          if (app.state === state && state.phase === 'choosing' &&
+            state.pending && state.pending.side !== 'player') {
+            UI.renderTable(state, { thinking: true });
+          }
+        }, 900);
+        schedulePendingResolution(1400);
       }
       return;
     }
@@ -396,19 +416,25 @@
       }
       if (state.lastRound) UI.showRound(state.lastRound, state);
     }
-    app.overlayTimer = window.setTimeout(show, 700);
+    app.overlayTimer = window.setTimeout(show, 1500);
   }
 
   function handleRoundContinue() {
     var state = app.state;
     if (!state) return;
     if (state.phase === 'gameover') {
-      showGameOverNow();
+      if (app.overlayTimer) window.clearTimeout(app.overlayTimer);
+      app.overlayTimer = window.setTimeout(function () {
+        app.overlayTimer = null;
+        showGameOverNow();
+      }, 1500);
       return;
     }
     if (state.phase !== 'roundEnd') return;
+    if (UI.motion) UI.motion.beginAction({ type: 'roundStart', side: state.turn });
     var result = E.startNextRound(state);
     if (!result.ok) {
+      if (UI.motion) UI.motion.cancel();
       UI.toast(result.reason || 'The next round cannot begin.', 'danger');
       return;
     }
@@ -449,6 +475,21 @@
 
     var action = AI.chooseAction(state, 'enemy');
     if (!action || action.type === 'wait') return;
+    if (action.type === 'pending') {
+      if (state.phase === 'choosing') schedulePendingResolution(1000);
+      return;
+    }
+    var intent = {
+      type: action.type === 'play' ? 'play' : action.type === 'leader' ? 'leader' : 'pass',
+      side: 'enemy'
+    };
+    if (action.type === 'play') {
+      var handInst = E.findHandCard(state, 'enemy', action.uid);
+      intent.uid = action.uid;
+      intent.cardId = handInst ? handInst.cardId : null;
+      intent.target = action.target || null;
+    }
+    if (UI.motion) UI.motion.beginAction(intent);
     var result;
     if (action.type === 'play') {
       result = E.playCard(state, 'enemy', action.uid, action.target);
@@ -462,9 +503,6 @@
       }
     } else if (action.type === 'pass') {
       result = E.pass(state, 'enemy');
-    } else if (action.type === 'pending') {
-      if (state.phase === 'choosing') schedulePendingResolution(1000);
-      return;
     } else {
       result = E.pass(state, 'enemy');
     }
@@ -492,6 +530,7 @@
       }
       var payload = AI.choosePending(state, 'enemy');
       if (payload === null || payload === undefined) payload = {};
+      if (UI.motion) UI.motion.beginAction({ type: 'choice', side: 'enemy' });
       var result = E.resolveChoice(state, 'enemy', payload);
       if (!result.ok) {
         var options = (state.pending && state.pending.options) || [];
@@ -504,6 +543,7 @@
         result = E.resolveChoice(state, 'enemy', fallback);
       }
       if (!result.ok) {
+        if (UI.motion) UI.motion.cancel();
         UI.toast(result.reason || 'Your opponent hesitates.', 'danger');
         return;
       }
@@ -517,12 +557,14 @@
 
   function handleGameRematch() {
     UI.hideGameOver();
+    if (UI.motion) UI.motion.reset();
     app.gameOverShown = false;
     beginMatch();
   }
 
   function handleGameSetup() {
     cancelTimers();
+    if (UI.motion) UI.motion.reset();
     UI.hideCoin();
     UI.hideRound();
     UI.hideGameOver();
@@ -539,6 +581,7 @@
 
   function handleGameTitle() {
     cancelTimers();
+    if (UI.motion) UI.motion.reset();
     UI.hideCoin();
     UI.hideRound();
     UI.hideGameOver();
@@ -550,6 +593,7 @@
   }
 
   function handleRestart() {
+    if (UI.motion) UI.motion.reset();
     UI.hideRound();
     UI.hideGameOver();
     app.gameOverShown = false;
@@ -558,6 +602,7 @@
 
   function handleQuitToTitle() {
     cancelTimers();
+    if (UI.motion) UI.motion.reset();
     UI.hideCoin();
     UI.hideRound();
     UI.hideGameOver();
@@ -573,6 +618,7 @@
 
   function handleEvent(type, payload) {
     payload = payload || {};
+    if (UI.motion) UI.motion.event(type, payload);
     switch (type) {
       case 'toast':
         UI.toast(payload.text, payload.kind);

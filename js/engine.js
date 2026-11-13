@@ -210,7 +210,13 @@
     if (drawn.length) {
       state.stats[side].drawn += drawn.length;
       log(state, side, sideAction(state, side, 'draw') + ' ' + drawn.length + (drawn.length === 1 ? ' card' : ' cards') + (reason ? ' (' + reason + ')' : '') + '.');
-      emit(state, 'draw', { side: side, count: drawn.length, reason: reason || '', cards: drawn.map(function (c) { return c.cardId; }) });
+      emit(state, 'draw', {
+        side: side,
+        count: drawn.length,
+        reason: reason || '',
+        cards: drawn.map(function (c) { return c.cardId; }),
+        uids: drawn.map(function (c) { return c.uid; })
+      });
     }
     return drawn;
   }

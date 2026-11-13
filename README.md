@@ -53,11 +53,21 @@ Each faction has five commanders, except Skellige, which has two. Leader abiliti
 
 The AI uses a different faction from you and evaluates only visible information: its own hand, both battlefields, weather, row totals, grave piles and spent leaders. It plans mulligans, values weather and clears, holds removal and Horns for profitable rows, considers Decoy and Mardroeme, and passes when a round is no longer worth contesting. It does not inspect your hand.
 
+## The table
+
+The battlefield is a warm wood-and-leather tabletop: carved row rails, brass row seals, a leather hand tray, and subdued grain that keeps card art and numbers legible. Deck and discard counts sit beside their piles, round gems and commander medallions frame each HUD, and each side's round total is placed consistently. The whole table — six rows, both HUDs and your hand — fits without page scrolling from wide desktop down to small portrait phones.
+
+Cards are staged rather than teleported. Selecting a card lifts it from the hand; playing it arcs face-up to its row, and the impact puff lands before scores resolve. Scores count up from their previous values, weather veils only the affected rows, Commander's Horn sends a gold wave down its row, Scorch marks its targets before they burn away, Decoy lifts a unit and returns it to hand, and draws fly as card backs before revealing. Turn changes raise a centered faction banner while the board quiets for a beat, passing stamps the HUD and quiets the passed hand, and round and match results arrive as their own banners once the last effect settles. Effects stay localized and deliberately unequal: ordinary units get a short landing, while tide-turning abilities earn longer, brighter resolutions.
+
+Hover or focus a hand card for a large preview with its artwork, power, row and full ability text. Keyboard hand navigation uses the same lift, shadow and preview. The table respects `prefers-reduced-motion`: travel and banners shorten, screen shake and large flashes are removed, and every state change remains explicit.
+
 ## Controls
 
 | Action | Input |
 | --- | --- |
 | Select a card | Click / tap it in hand |
+| Preview a card | Hover or focus it in hand |
+| Navigate the hand | `←` / `→` and `Home` / `End` while a hand card is focused |
 | Deploy to a row | Click a highlighted row |
 | Play a non-targeted card | Click **Play card** |
 | Choose a Decoy target | Click a highlighted friendly unit |
@@ -95,11 +105,13 @@ styles/
   screens.css         Title and faction-selection screens
   overlays.css        Modals, coin, round and game-over overlays
   animations.css      Keyframes and motion
+  tabletop.css        Wood-and-leather table, preview, FX and staged banners
 js/
   data.js             Cards, abilities, factions, leaders, preset decks
   engine.js           Rules engine: turns, deployment, scoring, rounds
   ai.js               Move generation, hand evaluation and opponent decisions
   ui.js               Rendering, interaction, modals, sound and responsive UI
+  tabletop.js         Hand preview, staged movement, effects and score reveals
   app.js              Match orchestration, timers and screen flow
 assets/
   cards/              162 card artworks (WebP) and manifest.json
@@ -108,7 +120,7 @@ assets/
 README.md
 ```
 
-The scripts are classic namespaced scripts loaded in order: `data.js` → `engine.js` → `ai.js` → `ui.js` → `app.js`. The shared namespace is `window.GWENT`.
+The scripts are classic namespaced scripts loaded in order: `data.js` → `engine.js` → `ai.js` → `ui.js` → `tabletop.js` → `app.js`. The shared namespace is `window.GWENT`.
 
 Card art is not a gameplay dependency: if a file is missing or fails to load, the card keeps its SVG icon, faction gradient and engraved pattern.
 
