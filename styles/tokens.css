@@ -438,16 +438,6 @@ ul, ol {
   margin-bottom: 0.28rem;
 }
 
-.tooltip .tip-ability {
-  display: block;
-  margin-top: 0.28rem;
-}
-
-.tooltip .tip-ability b {
-  color: var(--parchment);
-  font-weight: 600;
-}
-
 /* ==========================================================================
    Accessibility
    ========================================================================== */

@@ -17,13 +17,13 @@
   function timings() {
     if (reduced()) {
       return {
-        commit: 50, travel: 140, place: 80, impact: 70,
-        score: 160, scoreStep: 25, banner: 420, effect: 240, major: 40
+        commit: 40, travel: 120, place: 70, impact: 60,
+        score: 140, scoreStep: 20, banner: 380, effect: 200, major: 30
       };
     }
     return {
-      commit: 130, travel: 380, place: 190, impact: 240,
-      score: 340, scoreStep: 60, banner: 860, effect: 520, major: 160
+      commit: 90, travel: 340, place: 180, impact: 220,
+      score: 320, scoreStep: 55, banner: 820, effect: 500, major: 150
     };
   }
 
@@ -226,13 +226,13 @@
      ------------------------------------------------------------------------ */
 
   function clearTransientClasses() {
-    qa('.is-arriving, .is-landing, .is-weather-hit, .is-weather-clear, .is-horn-hit,' +
-      ' .is-scorch-hit, .is-power-surge, .is-score-changed, .is-round-fresh,' +
+    qa('.is-arriving, .is-landing, .is-major-landing, .is-weather-hit, .is-weather-clear, .is-horn-hit,' +
+      ' .is-scorch-hit, .is-power-surge, .is-score-changed, .is-score-pulse, .is-leader-target, .is-round-fresh,' +
       ' .is-gem-spent, .is-counting, .is-new, .is-summoned, .is-round-winner')
       .forEach(function (node) {
-        node.classList.remove('is-arriving', 'is-landing', 'is-weather-hit', 'is-weather-clear',
-          'is-horn-hit', 'is-scorch-hit', 'is-power-surge', 'is-score-changed',
-          'is-round-fresh', 'is-gem-spent', 'is-counting', 'is-new', 'is-summoned',
+        node.classList.remove('is-arriving', 'is-landing', 'is-major-landing', 'is-weather-hit', 'is-weather-clear',
+          'is-horn-hit', 'is-scorch-hit', 'is-power-surge', 'is-score-changed', 'is-score-pulse',
+          'is-leader-target', 'is-round-fresh', 'is-gem-spent', 'is-counting', 'is-new', 'is-summoned',
           'is-round-winner');
       });
     qa('.fx-horn-wave, .fx-weather-veil').forEach(removeNode);
@@ -255,6 +255,7 @@
     var b = board();
     if (b) b.classList.remove('is-resolving', 'is-turn-shift');
     hideTurnBanner();
+    hideLeaderReveal();
     ctx = null;
   }
 
@@ -351,9 +352,33 @@
      Main action choreography
      ------------------------------------------------------------------------ */
 
+  function animateHandReflow(act) {
+    if (!act || !act.before || !act.before.hand) return;
+    qa('.hand .card--hand[data-uid]').forEach(function (node) {
+      var uid = node.getAttribute('data-uid');
+      var before = act.before.hand[uid];
+      if (!before) return;
+      var after = rectOf(node);
+      if (!after) return;
+      var dx = before.rect.cx - after.cx;
+      var dy = before.rect.cy - after.cy;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+      try {
+        node.animate([
+          { translate: dx.toFixed(1) + 'px ' + dy.toFixed(1) + 'px' },
+          { translate: '0 0' }
+        ], {
+          duration: reduced() ? 100 : 220,
+          easing: 'cubic-bezier(.22,.61,.36,1)'
+        });
+      } catch (err) { /* individual transforms unavailable; skip the reflow */ }
+    });
+  }
+
   function runAction(act, state) {
     if (UI.state !== state) return;
     var t = timings();
+    animateHandReflow(act);
     var intent = act.intent || {};
     var card = intent.cardId ? G.CARDS[intent.cardId] : null;
     var isPlay = intent.type === 'play' && card;
@@ -362,6 +387,7 @@
     var roundEnd = findEvent(act.events, 'roundEnd');
     var matchEnd = findEvent(act.events, 'matchEnd');
     var roundStart = findEvent(act.events, 'roundStart');
+    var leaderEvent = findEvent(act.events, 'leader');
     var scoreDelay = 70;
     var effectDelay = 70;
 
@@ -372,6 +398,8 @@
     }
 
     scheduleEffects(act, state, effectDelay, t, !!isPlay);
+    var leaderReveal = null;
+    if (leaderEvent) leaderReveal = showLeaderReveal(act, state, leaderEvent.payload, intent);
     var drawDelay = isPlay ? t.commit + t.travel + t.place + (reduced() ? 0 : 100)
       : roundEnd ? 500 : 90;
     scheduleDraws(act, state, drawDelay, t);
@@ -429,6 +457,9 @@
         isPlay ? t.commit + t.travel + t.place + t.impact + 80 : 160,
         scoreDelay + t.score + 60
       );
+      if (leaderReveal && leaderReveal.duration) {
+        bannerDelay = Math.max(bannerDelay, leaderReveal.duration + 60);
+      }
       later(function () { showTurnBanner(state); }, bannerDelay);
     }
   }
@@ -604,6 +635,7 @@
     var from = sourceRect(act, intent);
     var to = targetRect(act, intent, card);
     var dest = card.special ? null : cardNode(intent.uid);
+    var major = isMajor(card);
 
     if (dest) {
       dest.classList.remove('card--just-played');
@@ -611,15 +643,17 @@
     }
 
     flyFace(card.id, from, to, t, {
-      className: isMajor(card) ? 'is-major' : '',
+      className: major ? 'is-major' : '',
       onArrive: function () {
         if (dest) {
           dest.classList.remove('is-arriving');
           dest.classList.add('is-landing');
-          later(function () { dest.classList.remove('is-landing'); }, 440);
+          if (major) dest.classList.add('is-major-landing');
+          later(function () {
+            dest.classList.remove('is-landing', 'is-major-landing');
+          }, reduced() ? 140 : (major ? 320 : 250));
         }
-        puff(to, specialKind(card), isMajor(card));
-        if (dest) flashCard(dest);
+        puff(to, specialKind(card), major);
       }
     });
 
@@ -666,15 +700,20 @@
         if (!rowNode) return;
         var value = rowNode.querySelector('.row__score strong');
         var scoreHost = rowNode.querySelector('.row__score');
+        var step = rowStep;
         if (scoreHost) {
           scoreHost.classList.add('is-counting');
           rowNode.classList.add('is-score-changed');
           later(function () {
+            if (value) value.classList.add('is-score-pulse');
+          }, delay + step);
+          later(function () {
             scoreHost.classList.remove('is-counting');
             rowNode.classList.remove('is-score-changed');
-          }, delay + t.score + rowStep + 220);
+            if (value) value.classList.remove('is-score-pulse');
+          }, delay + step + t.score + 220);
         }
-        animateNumber(value, before, after, t.score, delay + rowStep);
+        animateNumber(value, before, after, t.score, delay + step);
         rowStep += t.scoreStep;
       });
     });
@@ -685,10 +724,18 @@
       if (before === after) return;
       var host = q('.hud--' + side + ' .score-plate');
       if (!host) return;
+      var number = host.querySelector('strong');
+      var step = rowStep;
       host.classList.remove('is-bumped');
       host.classList.add('is-counting');
-      animateNumber(host.querySelector('strong'), before, after, t.score, delay + rowStep);
-      later(function () { host.classList.remove('is-counting'); }, delay + rowStep + t.score + 220);
+      later(function () {
+        if (number) number.classList.add('is-score-pulse');
+      }, delay + step);
+      animateNumber(number, before, after, t.score, delay + step);
+      later(function () {
+        host.classList.remove('is-counting');
+        if (number) number.classList.remove('is-score-pulse');
+      }, delay + step + t.score + 220);
       rowStep += t.scoreStep;
     });
 
@@ -758,13 +805,7 @@
     node.style.width = Math.max(44, Math.min(140, rect.width * 0.9)) + 'px';
     node.style.height = Math.max(44, Math.min(140, rect.height * 0.9)) + 'px';
     layer.appendChild(node);
-    later(function () { removeNode(node); }, major ? 980 : 760);
-  }
-
-  function flashCard(node) {
-    if (!node) return;
-    node.classList.add('is-landing');
-    later(function () { node.classList.remove('is-landing'); }, 480);
+    later(function () { removeNode(node); }, reduced() ? 180 : (major ? 560 : 360));
   }
 
   function scheduleEffects(act, state, delay, t, isPlay) {
@@ -1118,6 +1159,118 @@
   }
 
   /* ------------------------------------------------------------------------
+     Leader activation
+     ------------------------------------------------------------------------ */
+
+  function hideLeaderReveal() {
+    var node = $('leader-reveal');
+    if (!node) return;
+    node.hidden = true;
+    node.className = 'leader-reveal';
+    node.innerHTML = '';
+  }
+
+  function leaderTargetRows(act, leader, side) {
+    var rival = side === 'enemy' ? 'player' : 'enemy';
+    var rows = [];
+    if (leader.action === 'destroyRow') {
+      rows.push({ side: leader.target === 'enemy' ? rival : side, row: leader.row });
+    } else if (leader.action === 'doubleRow') {
+      rows.push({ side: side, row: leader.row });
+    } else if (leader.action === 'weather') {
+      var weather = G.WEATHER[leader.weather];
+      if (weather) {
+        weather.rows.forEach(function (rowName) {
+          rows.push({ side: 'player', row: rowName });
+          rows.push({ side: 'enemy', row: rowName });
+        });
+      }
+    } else if (leader.action === 'clearWeather') {
+      Object.keys(act.before.weather).forEach(function (key) {
+        var parts = key.split(':');
+        rows.push({ side: parts[0], row: parts[1] });
+      });
+    } else if (leader.action === 'hope') {
+      G.ROW_ORDER.forEach(function (rowName) { rows.push({ side: side, row: rowName }); });
+    }
+    return rows;
+  }
+
+  function highlightLeaderTargets(act, state, leader, side) {
+    var rival = side === 'enemy' ? 'player' : 'enemy';
+    leaderTargetRows(act, leader, side).forEach(function (target) {
+      var row = q('.row[data-side="' + target.side + '"][data-row="' + target.row + '"]');
+      if (row) pulse(row, 'is-leader-target', 720);
+    });
+
+    if (leader.action === 'doubleSpies') {
+      qa('.row .card[data-uid]').forEach(function (node) {
+        var card = G.CARDS[node.getAttribute('data-card-id')];
+        if (card && card.abilities && card.abilities.indexOf('spy') !== -1) {
+          pulse(node, 'is-leader-target', 720);
+        }
+      });
+    } else if (leader.action === 'cancelLeader') {
+      var enemyLeader = q('.hud--' + rival + ' .hud__leader');
+      if (enemyLeader) pulse(enemyLeader, 'is-leader-target', 720);
+    } else if (leader.action === 'peekHand') {
+      var enemyHand = q('.pile-btn[data-side="' + rival + '"][data-pile="hand"]');
+      if (enemyHand) pulse(enemyHand, 'is-leader-target', 720);
+    } else if (leader.action === 'stealGrave') {
+      var enemyGrave = q('.pile-btn[data-side="' + rival + '"][data-pile="grave"]');
+      if (enemyGrave) pulse(enemyGrave, 'is-leader-target', 720);
+    } else if (leader.action === 'recoverGrave') {
+      var ownGrave = q('.pile-btn[data-side="' + side + '"][data-pile="grave"]');
+      if (ownGrave) pulse(ownGrave, 'is-leader-target', 720);
+    }
+  }
+
+  function showLeaderReveal(act, state, payload, intent) {
+    var node = $('leader-reveal');
+    if (!node || !state) return null;
+    var side = payload.side || intent.side || 'player';
+    var leader = E.leaderOfSide(state, side) || G.LEADERS[payload.leaderId];
+    if (!leader) return null;
+    var factionId = E.factionOfSide(state, side);
+    var faction = G.FACTIONS[factionId] || {};
+    var isChoice = state.phase === 'choosing';
+    var duration = reduced() ? (isChoice ? 260 : 380) : (isChoice ? 420 : 820);
+    var fade = reduced() ? 80 : 240;
+
+    UI.setFactionVars(node, factionId);
+    node.className = 'leader-reveal is-' + side + (isChoice ? ' is-brief' : '');
+    node.innerHTML =
+      '<span class="leader-reveal__fog" aria-hidden="true"></span>' +
+      '<div class="leader-reveal__inner">' +
+        '<div class="leader-reveal__portrait">' +
+          UI.artImage(leader.art, 'leader-reveal__portrait-img') +
+          '<span class="leader-reveal__crest">' + UI.icon(leader.icon || faction.icon || 'i-crown') + '</span>' +
+        '</div>' +
+        '<div class="leader-reveal__copy">' +
+          '<span class="leader-reveal__eyebrow">' +
+            UI.esc(side === 'player' ? 'Your commander acts' : 'The rival commander acts') +
+          '</span>' +
+          '<strong class="leader-reveal__name">' + UI.esc(leader.name) + '</strong>' +
+          '<span class="leader-reveal__ability">' + UI.esc(leader.ability) + '</span>' +
+          '<span class="leader-reveal__desc">' + UI.esc(leader.desc) + '</span>' +
+        '</div>' +
+      '</div>';
+    node.hidden = false;
+    void node.offsetWidth;
+    node.classList.add('is-on');
+
+    highlightLeaderTargets(act, state, leader, side);
+    later(function () { node.classList.remove('is-on'); }, Math.max(120, duration - fade));
+    later(function () {
+      if (node.classList.contains('is-on')) return;
+      node.hidden = true;
+      node.className = 'leader-reveal';
+      node.innerHTML = '';
+    }, duration);
+    return { duration: duration };
+  }
+
+  /* ------------------------------------------------------------------------
      Round and final reveal
      ------------------------------------------------------------------------ */
 
@@ -1289,8 +1442,8 @@
           power +
         '</div>' +
         '<div class="card-preview__copy">' +
-          '<span class="card-preview__meta">' + UI.esc(meta) + '</span>' +
           '<h3>' + UI.esc(card.name) + '</h3>' +
+          '<span class="card-preview__meta">' + UI.esc(meta) + '</span>' +
           '<div class="card-preview__abilities">' + previewAbilityHtml(card) + '</div>' +
         '</div>' +
       '</div>';

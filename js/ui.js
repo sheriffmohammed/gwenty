@@ -198,37 +198,38 @@
   function cardTipHtml(card, inst, value) {
     if (!card) return '';
     var parts = [];
-    parts.push('<strong>' + esc(card.name) + '</strong>');
+    parts.push('<strong class="tooltip__name">' + esc(card.name) + '</strong>');
     if (card.special) {
       var specialName = SPECIAL_PIP[card.special];
       if (G.WEATHER[card.special]) {
-        parts.push('<div>' + esc(G.WEATHER[card.special].name) + ' — affects ' +
-          esc(WEATHER_ROWS[card.special] || 'the battlefield') + '.</div>');
-        parts.push('<div>' + esc(G.WEATHER[card.special].desc) + '</div>');
+        parts.push('<span class="tooltip__meta">Weather · affects ' +
+          esc(WEATHER_ROWS[card.special] || 'the battlefield') + '</span>');
+        parts.push('<span class="tooltip__ability">' + esc(G.WEATHER[card.special].desc) + '</span>');
       } else if (specialName && specialName.desc) {
-        parts.push('<div>' + esc(specialName.desc) + '</div>');
+        parts.push('<span class="tooltip__meta">' + esc(specialName.name) + ' · special card</span>');
+        parts.push('<span class="tooltip__ability">' + esc(specialName.desc) + '</span>');
       } else if (card.special === 'clear') {
-        parts.push('<div>Remove every weather effect from both battlefields.</div>');
+        parts.push('<span class="tooltip__ability">Remove every weather effect from both battlefields.</span>');
       }
       return parts.join('');
     }
     var meta = FACTION_LABEL[card.faction] || 'Neutral';
     meta += ' · ' + G.rowName(card);
     meta += ' · Base strength ' + card.strength;
-    parts.push('<div>' + esc(meta) + '</div>');
+    parts.push('<span class="tooltip__meta">' + esc(meta) + '</span>');
     if (value !== undefined && value !== null && Number(value) !== card.strength) {
-      parts.push('<div><b>Current strength:</b> ' + esc(value) + '</div>');
+      parts.push('<span class="tooltip__meta tooltip__meta--value">Current strength ' + esc(value) + '</span>');
     }
     if (card.hero) {
-      parts.push('<span class="tip-ability"><b>Hero.</b> Immune to weather, Scorch, Decoy and hostile effects.</span>');
+      parts.push('<span class="tooltip__ability"><b>Hero.</b> Immune to weather, Scorch, Decoy and hostile effects.</span>');
     }
     (card.abilities || []).forEach(function (id) {
       var ability = G.ABILITIES[id];
       if (!ability) return;
-      parts.push('<span class="tip-ability"><b>' + esc(ability.name) + '.</b> ' + esc(ability.desc) + '</span>');
+      parts.push('<span class="tooltip__ability"><b>' + esc(ability.name) + '.</b> ' + esc(ability.desc) + '</span>');
     });
     if (inst && inst.owner && inst.owner !== (inst.boardSide || inst.owner)) {
-      parts.push('<span class="tip-ability"><b>Spy.</b> Counts for the other commander.</span>');
+      parts.push('<span class="tooltip__ability"><b>Spy.</b> Counts for the other commander.</span>');
     }
     return parts.join('');
   }
@@ -236,18 +237,20 @@
   function leaderTipHtml(leader, state) {
     if (!leader) return '';
     var used = state && state.usedLeaders[leader.faction === state.playerFaction ? 'player' : 'enemy'];
-    var html = '<strong>' + esc(leader.name + (leader.epithet ? ' — ' + leader.epithet : '')) + '</strong>' +
-      '<div><b>' + esc(leader.ability) + '</b></div><div>' + esc(leader.desc) + '</div>';
-    if (leader.passive) html += '<span class="tip-ability"><b>Passive.</b> Always in effect.</span>';
-    else if (used) html += '<span class="tip-ability"><b>Spent.</b> This commander has already acted.</span>';
+    var html = '<strong class="tooltip__name">' + esc(leader.name) + '</strong>' +
+      (leader.epithet ? '<span class="tooltip__meta">' + esc(leader.epithet) + '</span>' : '') +
+      '<span class="tooltip__ability"><b>' + esc(leader.ability) + '.</b> ' + esc(leader.desc) + '</span>';
+    if (leader.passive) html += '<span class="tooltip__ability"><b>Passive.</b> Always in effect.</span>';
+    else if (used) html += '<span class="tooltip__ability"><b>Spent.</b> This commander has already acted.</span>';
     return html;
   }
 
   function weatherTipHtml(type) {
     var weather = G.WEATHER[type];
     if (!weather) return '';
-    return '<strong>' + esc(weather.name) + '</strong><div>Affects ' +
-      esc(WEATHER_ROWS[type] || 'the battlefield') + '.</div><div>' + esc(weather.desc) + '</div>';
+    return '<strong class="tooltip__name">' + esc(weather.name) + '</strong>' +
+      '<span class="tooltip__meta">Weather · affects ' + esc(WEATHER_ROWS[type] || 'the battlefield') + '</span>' +
+      '<span class="tooltip__ability">' + esc(weather.desc) + '</span>';
   }
 
   /* ------------------------------------------------------------------------
@@ -285,8 +288,8 @@
     } else if (kind === 'weather') {
       html = weatherTipHtml(target.getAttribute('data-weather-id'));
     } else if (kind === 'generic') {
-      html = '<strong>' + esc(target.getAttribute('data-tip-title') || '') + '</strong>' +
-        '<div>' + esc(target.getAttribute('data-tip-body') || '') + '</div>';
+      html = '<strong class="tooltip__name">' + esc(target.getAttribute('data-tip-title') || '') + '</strong>' +
+        '<span class="tooltip__desc">' + esc(target.getAttribute('data-tip-body') || '') + '</span>';
     }
     if (!html) return;
     tip.innerHTML = html;
@@ -1282,7 +1285,8 @@
     root.innerHTML = '';
     var shell = el('div', 'modal' +
       (opts.size === 'wide' ? ' modal--wide' : opts.size === 'small' ? ' modal--small' : '') +
-      (opts.size === 'chronicle' ? ' modal--chronicle' : ''));
+      (opts.size === 'chronicle' ? ' modal--chronicle' : '') +
+      (opts.className ? ' ' + opts.className : ''));
 
     var header = el('div', 'modal__header');
     var titles = el('div', 'modal__titles');
@@ -1702,6 +1706,7 @@
         : list.length + ' card' + (list.length === 1 ? '' : 's') + ' in this pile.',
       body: body,
       size: 'wide',
+      className: 'modal--pile',
       actions: [{ label: 'Close', cls: 'btn--ghost' }]
     });
   }
