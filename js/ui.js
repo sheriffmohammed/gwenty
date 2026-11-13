@@ -252,7 +252,8 @@
     var weather = G.WEATHER[type];
     if (!weather) return '';
     return '<strong class="tooltip__name">' + esc(weather.name) + '</strong>' +
-      '<span class="tooltip__meta">Weather · affects ' + esc(WEATHER_ROWS[type] || 'the battlefield') + '</span>' +
+      '<span class="tooltip__meta">Weather · affects ' + esc(WEATHER_ROWS[type] || 'the battlefield') +
+        ' · until round end or cleared</span>' +
       '<span class="tooltip__ability">' + esc(weather.desc) + '</span>';
   }
 
@@ -958,7 +959,10 @@
       if (!card || !card.weather) return;
       var weather = G.WEATHER[card.weather];
       chips += '<span class="weather-chip" data-tip="weather" data-weather-id="' + card.weather + '">' +
-        use(weather.icon) + weather.name + ' <em>' + UI.esc(WEATHER_ROWS[card.weather] || '') + '</em></span>';
+        '<span class="weather-chip__art">' + artImage(card.art, 'weather-chip__img') + '</span>' +
+        '<span class="weather-chip__copy">' + weather.name +
+          ' <em>' + UI.esc(WEATHER_ROWS[card.weather] || '') + '</em>' +
+          '<span class="weather-chip__note">Until round end or cleared</span></span></span>';
     });
     host.innerHTML =
       '<span class="weather-strip__label">' + use('i-fog') + 'Weather</span>' +
@@ -1561,7 +1565,7 @@
             '<li>The winner opens the next round. After a tie, the other commander opens.</li>' +
           '</ul>' +
           '<h3>Weather and rows</h3>' +
-          '<p>Weather affects both battlefields and <strong>remains between rounds</strong> until replaced or cleared. ' +
+          '<p>Weather affects both battlefields and <strong>lasts until the round ends or Clear Weather is played</strong>. ' +
             'Commander&rsquo;s Horns, Mardroeme and leader row effects are cleared when a round ends. ' +
             'Strength is counted in this order: weather, Tight Bond, Morale, then doubling.</p>' +
           '<h3>Heroes and specials</h3>' +

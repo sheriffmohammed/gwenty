@@ -625,9 +625,6 @@
         break;
       case 'play':
         UI.playSound('play');
-        if (payload.side === 'enemy' && payload.cardId && G.CARDS[payload.cardId]) {
-          UI.toast('Your opponent plays ' + G.CARDS[payload.cardId].name + '.', 'opponent', 3200);
-        }
         break;
       case 'deal':
       case 'mulligan':
@@ -639,9 +636,6 @@
         break;
       case 'weather':
         UI.playSound('weather');
-        if (payload.type && G.WEATHER[payload.type]) {
-          UI.toast(G.WEATHER[payload.type].name + ' settles over both battlefields.', 'weather');
-        }
         break;
       case 'clearWeather':
         if (!payload.roundEnd) UI.playSound('weather');

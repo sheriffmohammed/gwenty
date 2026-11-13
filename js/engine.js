@@ -269,7 +269,6 @@
     var weather = G.WEATHER[type];
     log(state, inst.owner, sideAction(state, inst.owner, 'invoke') + ' ' + weather.name + '.');
     emit(state, 'weather', { type: type, owner: inst.owner, cardId: inst.cardId });
-    toast(state, weather.name, 'weather');
   }
 
   Engine.isWeatherActive = isWeatherActive;
